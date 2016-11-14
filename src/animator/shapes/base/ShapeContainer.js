@@ -10,6 +10,7 @@ export default class ShapeContainer extends Shape {
   }
 
   reset () {
+    super.reset()
     if (this.list) {
       this.list.forEach((entity, i) => {
         this.remove(i)

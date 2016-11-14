@@ -4,7 +4,7 @@ export default class Animator {
 
     this.playing = true
     this.start = false
-    this.lastTimestamp = -1
+    this.lastTimestamp = Number.POSITIVE_INFINITY
     this.loop = false
   }
 
@@ -20,7 +20,9 @@ export default class Animator {
       this.shape.worldX = this.shape.x
       this.shape.worldY = this.shape.y
       this.shape.worldZ = this.shape.z
-      this.shape.update(elapsed)
+      if (elapsed >= 0) {
+        this.shape.update(elapsed)
+      }
 
       if (!this.shape.stoped || this.loop) {
         window.requestAnimationFrame(this._enterframe.bind(this))
@@ -31,7 +33,9 @@ export default class Animator {
   play (loop = false) {
     this.loop = loop
     this.playing = true
-    this.lastTimestamp = window.performance.now()
+    this.start = null
+    this.lastTimestamp = Number.POSITIVE_INFINITY
+    // this.lastTimestamp = window.performance.now()
     window.requestAnimationFrame(this._enterframe.bind(this))
   }
 

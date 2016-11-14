@@ -109,4 +109,8 @@ ease.elasticIn = getElasticIn(1, 0.3)
 ease.elasticOut = getElasticOut(1, 0.3)
 ease.elasticInOut = getElasticInOut(1, 0.3 * 1.5)
 
+ease.expoIn = t => Math.pow(2, 10 * (t - 1)) - 0.001
+ease.expoOut = t => 1 - Math.pow(2, -10 * t)
+ease.expoInOut = t => ((t *= 2) < 1) ? 0.5 * Math.pow(2, 10 * (t - 1)) : 0.5 * (2 - Math.pow(2, -10 * (t - 1)))
+
 export default ease

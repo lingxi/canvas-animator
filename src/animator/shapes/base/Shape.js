@@ -22,11 +22,19 @@ export default class Shape {
     this.zScale = 1
     this.finalScale = 1
 
-    this.stoped = false
+    this.alpha = 1
 
-    this.total = 0
+    this.loop = false
+    this.period = false
 
+    this.reset()
     this.map()
+  }
+
+  reset () {
+    this.stoped = false
+    this.total = 0
+    this.progress = 0
   }
 
   // 3D => 2D
@@ -37,10 +45,28 @@ export default class Shape {
   }
 
   update (elapsed) {
-    this.rotationX += this.rotationVelX * elapsed
-    this.rotationY += this.rotationVelY * elapsed
-    this.rotationZ += this.rotationVelZ * elapsed
-    this.finalScale = this.zScale * this.scale
-    this.total += elapsed
+    if (!this.stoped) {
+      if (this.period) {
+        this.progress = this.total / this.period
+        // console.log(elapsed, this.progress, this.total, this.period)
+        if (this.progress >= 1) {
+          if (!this.loop) {
+            this.stoped = true
+            this.total = this.period
+            this.progress = 1
+          } else {
+            this.total = 0
+            this.progress = 0
+          }
+        }
+      }
+
+      this.rotationX += this.rotationVelX * elapsed
+      this.rotationY += this.rotationVelY * elapsed
+      this.rotationZ += this.rotationVelZ * elapsed
+      this.finalScale = this.zScale * this.scale
+
+      this.total += elapsed
+    }
   }
 }

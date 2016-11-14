@@ -1,8 +1,9 @@
 import Animator from './animator/Animator'
-import Animation from './animation/TweenTest'
-// import Cube from './animation/Cube'
-// import Squares from './animation/Squares'
-// import Circles from './animation/Circles'
+import Animation from './animation/Bang'
+// import Animation from './animation/TweenTest'
+// import Animation from './animation/Cube'
+// import Animation from './animation/Squares'
+// import Animation from './animation/Circles'
 
 const canvas = document.getElementById('js-canvas')
 canvas.width = document.body.clientWidth
@@ -13,3 +14,10 @@ const animation = new Animation(context, canvas.width / 2, canvas.height / 2)
 
 const animator = new Animator(animation)
 animator.play()
+
+document.body.onclick = event => {
+  animation.x = event.clientX
+  animation.y = event.clientY
+  animation.reset()
+  animator.play()
+}

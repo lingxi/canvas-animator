@@ -1,4 +1,4 @@
-import Circle from '../animator/shapes/Circle'
+import Star from '../animator/shapes/Star'
 import ease from '../animator/ease'
 import ShapeContainer from '../animator/shapes/base/ShapeContainer'
 
@@ -8,9 +8,10 @@ export default class TweenTest extends ShapeContainer {
     this.period = 3
     this.len = 500
 
-    const r = 50
+    const R = 75
+    const r = 25
     const color = '#000'
-    this.circle = new Circle(this.context, -this.len / 2, 0, 0, r, color)
+    this.circle = new Star(this.context, -this.len / 2, 0, 0, R, r, 5, color)
     this.add(this.circle)
   }
 
@@ -19,7 +20,6 @@ export default class TweenTest extends ShapeContainer {
     this.draw()
 
     const zero = -this.len / 2
-    const progress = (this.total % this.period) / this.period
-    this.circle.x = zero + ease.circOut(progress) * this.len
+    this.circle.x = zero + ease.circOut(this.progress) * this.len
   }
 }
