@@ -15,6 +15,7 @@ const animation = new Animation(context, canvas.width / 2, canvas.height / 2)
 const animator = new Animator(animation)
 animator.play()
 
+canvas.style.background = '#000'
 document.body.onclick = event => {
   animation.x = event.clientX
   animation.y = event.clientY
