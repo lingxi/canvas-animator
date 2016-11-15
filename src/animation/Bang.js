@@ -3,6 +3,10 @@ import Ring from '../animator/shapes/Ring'
 import ease from '../animator/ease'
 import ShapeContainer from '../animator/shapes/base/ShapeContainer'
 
+const ringColor = '#ffffb2'
+const starColor = '#fbe782'
+const starLineColor = '#f6c055'
+
 export default class Bang extends ShapeContainer {
   constructor (context = null, x = 0, y = 0, len = 200) {
     super(context, x, y)
@@ -15,13 +19,13 @@ export default class Bang extends ShapeContainer {
   reset () {
     super.reset()
 
-    this.ring = new Ring(this.context, 0, 0, 0, 0, 0, '#fff')
+    this.ring = new Ring(this.context, 0, 0, 0, 0, 0, ringColor)
     this.add(this.ring)
 
     this.stars = []
     const countStar = 10
-    const starStrokeStyle = '#bbb'
-    const starFillStyle = '#fff'
+    const starStrokeStyle = starLineColor
+    const starFillStyle = starColor
     const rRange = this.len * 0.05
     const RRange = this.len * 0.1
     const lineWidth = this.len * 0.02
