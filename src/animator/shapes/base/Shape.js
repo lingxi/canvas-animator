@@ -27,12 +27,14 @@ export default class Shape {
     this.loop = false
     this.period = false
 
+    this.autoRemoveWhenStopped = true
+
     this.reset()
     this.map()
   }
 
   reset () {
-    this.stoped = false
+    this.stopped = false
     this.total = 0
     this.progress = 0
   }
@@ -45,13 +47,13 @@ export default class Shape {
   }
 
   update (elapsed) {
-    if (!this.stoped) {
+    if (!this.stopped) {
       if (this.period) {
         this.progress = this.total / this.period
         // console.log(elapsed, this.progress, this.total, this.period)
         if (this.progress >= 1) {
           if (!this.loop) {
-            this.stoped = true
+            this.stopped = true
             this.total = this.period
             this.progress = 1
           } else {

@@ -26,6 +26,7 @@ export default class ShapeContainer extends Shape {
         entity.context = this.context
         entity.distance = this.distance
         this.list[i] = entity
+        // console.log('add at: ' + i)
         return i
       }
     }
@@ -36,11 +37,13 @@ export default class ShapeContainer extends Shape {
     const entity = this.list[index]
     if (entity) {
       this.list[index] = null
+      // console.log('remove at: ' + index)
     }
   }
 
   update (elapsed) {
     super.update(elapsed)
+    const autoRemoves = []
     this.list.forEach((entity, i) => {
       if (entity) {
         const { x: rotatedX, y: rotatedY, z: rotatedZ } = ShapeContainer.rotate(entity.x, entity.y, entity.z, this.rotationX, this.rotationY, this.rotationZ)
@@ -49,7 +52,13 @@ export default class ShapeContainer extends Shape {
         entity.worldZ = this.worldZ + rotatedZ
         entity.map()
         entity.update(elapsed)
+        if (entity.stopped && entity.autoRemoveWhenStopped) {
+          autoRemoves.push(i)
+        }
       }
+    })
+    autoRemoves.forEach(v => {
+      this.remove(v)
     })
   }
 

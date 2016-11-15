@@ -24,7 +24,7 @@ export default class Animator {
         this.shape.update(elapsed)
       }
 
-      if (!this.shape.stoped || this.loop) {
+      if (!this.shape.stopped || this.loop) {
         window.requestAnimationFrame(this._enterframe.bind(this))
       }
     }

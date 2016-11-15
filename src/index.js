@@ -1,5 +1,5 @@
 import Animator from './animator/Animator'
-import Animation from './animation/Bang'
+import Animation from './animation/Bangs'
 // import Animation from './animation/TweenTest'
 // import Animation from './animation/Cube'
 // import Animation from './animation/Squares'
@@ -16,9 +16,9 @@ const animator = new Animator(animation)
 animator.play()
 
 canvas.style.background = '#000'
-document.body.onclick = event => {
-  animation.x = event.clientX
-  animation.y = event.clientY
-  animation.reset()
-  animator.play()
-}
+// document.body.onclick = event => {
+//   animation.x = event.clientX
+//   animation.y = event.clientY
+//   animation.reset()
+//   animator.play()
+// }

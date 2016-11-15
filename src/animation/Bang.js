@@ -3,12 +3,12 @@ import Ring from '../animator/shapes/Ring'
 import ease from '../animator/ease'
 import ShapeContainer from '../animator/shapes/base/ShapeContainer'
 
-export default class TweenTest extends ShapeContainer {
-  constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+export default class Bang extends ShapeContainer {
+  constructor (context = null, x = 0, y = 0, len = 200) {
+    super(context, x, y)
     this.period = 0.5
-    this.len = 100
-    this.R = 75
+    this.len = len
+    this.R = this.len * 0.7
     this.reset()
   }
 
@@ -22,10 +22,13 @@ export default class TweenTest extends ShapeContainer {
     const countStar = 10
     const starStrokeStyle = '#bbb'
     const starFillStyle = '#fff'
+    const rRange = this.len * 0.05
+    const RRange = this.len * 0.1
+    const lineWidth = this.len * 0.02
     for (let i = 0; i < countStar; i++) {
-      const r = 2 + Math.random() * 10
-      const R = r + Math.random() * 15
-      const star = new Star(this.context, 0, 0, 0, R, r, 5, starStrokeStyle, starFillStyle)
+      const r = 2 + Math.random() * rRange
+      const R = r + Math.random() * RRange
+      const star = new Star(this.context, 0, 0, 0, R, r, 5, starStrokeStyle, starFillStyle, lineWidth)
       star.dir = i / countStar * Math.PI * 2
       star.len = this.len * Math.random()
       star.rotationVelZ = (Math.random() - 0.5) * 2 * Math.PI * 3
@@ -47,12 +50,14 @@ export default class TweenTest extends ShapeContainer {
     if (this.progress <= alphaProgress) {
       const p = this.progress / alphaProgress
       this.ring.r = this.R * ease.quadOut(p)
-      this.ring.R = this.R * ease.quintOut(p)
+      this.ring.R = this.R * ease.expoOut(p)
     } else {
-      const alpha = 1 - (this.progress - alphaProgress) / (1 - alphaProgress)
+      const subProgress = (this.progress - alphaProgress) / (1 - alphaProgress)
+      const alpha = 1 - subProgress
       this.ring.alpha = alpha
       for (const star of this.stars) {
         star.alpha = alpha
+        star.scale = alpha
       }
     }
 
