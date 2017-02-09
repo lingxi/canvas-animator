@@ -2,10 +2,11 @@
   "name": "canvas-animator",
   "version": "0.1.1",
   "description": "Several simple classes for building canvas animation.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --ext .js",
+    "build": "webpack",
     "dev": "webpack-dev-server --inline"
   },
   "repository": {

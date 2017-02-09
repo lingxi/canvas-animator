@@ -18,7 +18,7 @@ import filters from './utils/filters'
 
 import Animator from './Animator'
 
-export default {
+const animator = {
   animations: {
     Bang,
     Bangs,
@@ -43,3 +43,6 @@ export default {
   },
   Animator
 }
+
+window.animator = animator
+export default animator

@@ -119,7 +119,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = {
+	var animator = {
 	  animations: {
 	    Bang: _Bang2.default,
 	    Bangs: _Bangs2.default,
@@ -144,6 +144,9 @@
 	  },
 	  Animator: _Animator2.default
 	};
+	
+	window.animator = animator;
+	exports.default = animator;
 
 /***/ },
 /* 2 */
