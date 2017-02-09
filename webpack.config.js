@@ -2,11 +2,12 @@ var path = require('path')
 
 module.exports = {
   entry: {
-    index: ['babel-polyfill', './test.js']
+    index: ['./src/index'],
+    test: ['babel-polyfill', './example/test.js']
   },
   output: {
-    path: path.resolve(__dirname, 'js'),
-    publicPath: '/js/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
     filename: '[name].js'
   },
   module: {

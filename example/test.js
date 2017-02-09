@@ -1,5 +1,5 @@
-import Animator from './Animator'
-import Animation from './animations/Bangs'
+import Animator from '../src/Animator'
+import Animation from '../src/animations/Bangs'
 // import Animation from './animations/Circles'
 // import Animation from './animations/Cube'
 // import Animation from './animations/Squares'
