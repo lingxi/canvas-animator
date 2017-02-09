@@ -1,13 +1,12 @@
-var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
   entry: {
-    index: ['babel-polyfill', './src/index.js']
+    index: ['babel-polyfill', './test.js']
   },
   output: {
     path: path.resolve(__dirname, 'js'),
-        publicPath: '/js/',
+    publicPath: '/js/',
     filename: '[name].js'
   },
   module: {

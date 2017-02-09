@@ -16,7 +16,9 @@ export default class Animator {
       const elapsed = (timestamp - this.lastTimestamp) / 1000
       this.lastTimestamp = timestamp
 
-      this.shape.context.clearRect(0, 0, this.shape.context.canvas.width, this.shape.context.canvas.height)
+      if (this.shape.context) {
+        this.shape.context.clearRect(0, 0, this.shape.context.canvas.width, this.shape.context.canvas.height)
+      }
       this.shape.worldX = this.shape.x
       this.shape.worldY = this.shape.y
       this.shape.worldZ = this.shape.z
@@ -37,6 +39,11 @@ export default class Animator {
     this.lastTimestamp = Number.POSITIVE_INFINITY
     // this.lastTimestamp = window.performance.now()
     window.requestAnimationFrame(this._enterframe.bind(this))
+  }
+
+  replay () {
+    this.shape.reset()
+    this.play()
   }
 
   pause () {

@@ -1,5 +1,5 @@
-import Rect from '../animator/shapes/Rect'
-import ShapeContainer from '../animator/shapes/base/ShapeContainer'
+import Rect from '../shapes/Rect'
+import ShapeContainer from '../base/ShapeContainer'
 
 export default class Squares extends ShapeContainer {
   constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {

@@ -1,6 +1,6 @@
-import Circle from '../animator/shapes/Circle'
-import { sinInOut, back } from '../animator/shapes/base/Filters'
-import ShapeContainer from '../animator/shapes/base/ShapeContainer'
+import Circle from '../shapes/Circle'
+import { sinInOut, back } from '../utils/Filters'
+import ShapeContainer from '../base/ShapeContainer'
 
 class WavedCircle extends Circle {
   constructor (context = null, x = 0, y = 0, z = 0, r = 100, color = '#000', distance = Number.MAX_SAFE_INTEGER) {

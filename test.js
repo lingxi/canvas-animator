@@ -1,9 +1,9 @@
-import Animator from './animator/Animator'
-import Animation from './animation/Bangs'
-// import Animation from './animation/TweenTest'
-// import Animation from './animation/Cube'
-// import Animation from './animation/Squares'
-// import Animation from './animation/Circles'
+import Animator from './Animator'
+import Animation from './animations/Bangs'
+// import Animation from './animations/Circles'
+// import Animation from './animations/Cube'
+// import Animation from './animations/Squares'
+// import Animation from './animations/TweenTest'
 
 const canvas = document.getElementById('js-canvas')
 canvas.width = document.body.clientWidth
@@ -16,6 +16,7 @@ const animator = new Animator(animation)
 animator.play()
 
 canvas.style.background = '#000'
+
 // document.body.onclick = event => {
 //   animation.x = event.clientX
 //   animation.y = event.clientY

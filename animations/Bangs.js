@@ -1,5 +1,5 @@
 import Bang from './Bang'
-import ShapeContainer from '../animator/shapes/base/ShapeContainer'
+import ShapeContainer from '../base/ShapeContainer'
 
 export default class Bangs extends ShapeContainer {
   constructor (context = null) {
