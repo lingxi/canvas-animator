@@ -5,7 +5,7 @@ import Animation from '../src/animations/Bangs'
 const canvas = document.getElementById('js-canvas')
 canvas.width = document.body.clientWidth
 canvas.height = document.body.clientHeight
-canvas.style.background = '#000'
+canvas.style.background = '#333'
 
 const context = canvas.getContext('2d')
 const animation = new Animation(context, canvas.width / 2, canvas.height / 2)

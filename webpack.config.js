@@ -29,7 +29,7 @@ module.exports = {
   },
   devtool: '#source-map',
   devServer: {
-    port: 8888,
+    port: 8889,
     host: '0.0.0.0'
   },
   plugins: []
