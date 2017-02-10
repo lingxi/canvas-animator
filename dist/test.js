@@ -2480,7 +2480,6 @@ var Bitmap = function (_Shape) {
       var actualHeight = this.height * this.finalScale;
 
       this.context.fillStyle = this.pattern;
-      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
       if (this.srcRect) {
         this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
       } else {
@@ -4320,7 +4319,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var canvas = document.getElementById('js-canvas');
 canvas.width = document.body.clientWidth;
 canvas.height = document.body.clientHeight;
-canvas.style.background = '#000';
+canvas.style.background = '#333';
 
 var context = canvas.getContext('2d');
 var animation = new __WEBPACK_IMPORTED_MODULE_1__src_animations_Bangs__["a" /* default */](context, canvas.width / 2, canvas.height / 2);

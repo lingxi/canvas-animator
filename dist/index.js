@@ -761,7 +761,6 @@ var Bitmap = function (_Shape) {
       var actualHeight = this.height * this.finalScale;
 
       this.context.fillStyle = this.pattern;
-      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
       if (this.srcRect) {
         this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
       } else {
