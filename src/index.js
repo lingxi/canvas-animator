@@ -14,7 +14,7 @@ import Ring from './shapes/Ring'
 import Star from './shapes/Star'
 
 import ease from './utils/ease'
-import filters from './utils/filters'
+import * as filters from './utils/filters'
 
 import Animator from './Animator'
 

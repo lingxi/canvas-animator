@@ -8,10 +8,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
-    filename: '[name].js'
+    filename: '[name].js',
+    library: 'canvas-animator',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
@@ -21,7 +24,7 @@ module.exports = {
     }, {
       test: /\.png$/,
       loader: 'url-loader',
-      query: { mimetype: 'image/png' }
+      options: { mimetype: 'image/png' }
     }]
   },
   devtool: '#source-map',
