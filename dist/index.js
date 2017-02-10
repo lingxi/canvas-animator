@@ -735,8 +735,7 @@ var Bitmap = function (_Shape) {
     var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
     var img = arguments[6];
     var srcRect = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
-    var repeat = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 'repeat';
-    var distance = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : Number.MAX_SAFE_INTEGER;
+    var distance = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : Number.MAX_SAFE_INTEGER;
 
     _classCallCheck(this, Bitmap);
 
