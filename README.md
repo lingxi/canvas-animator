@@ -1,4 +1,4 @@
-### WIP
+# WIP
 
 ```javascript
 import Animator from './Animator'

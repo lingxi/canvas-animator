@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 309);
+/******/ 	return __webpack_require__(__webpack_require__.s = 311);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -182,171 +182,15 @@ var Shape = function () {
 
 /***/ }),
 
-/***/ 309:
+/***/ 311:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(60);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
 
-/***/ 60:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Star__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_ease__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_filters__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Animator__ = __webpack_require__(61);
-// import Bang from './animations/Bang'
-// import Bangs from './animations/Bangs'
-// import Circles from './animations/Circles'
-// import Cube from './animations/Cube'
-// import Squares from './animations/Squares'
-// import TweenTest from './animations/TweenTest'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var animator = {
-  // animations: {
-  //   Bang,
-  //   Bangs,
-  //   Circles,
-  //   Cube,
-  //   Squares,
-  //   TweenTest
-  // },
-  base: {
-    Shape: __WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */],
-    ShapeContainer: __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]
-  },
-  shapes: {
-    Circle: __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__["a" /* default */],
-    Rect: __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__["a" /* default */],
-    Ring: __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__["a" /* default */],
-    Star: __WEBPACK_IMPORTED_MODULE_5__shapes_Star__["a" /* default */]
-  },
-  utils: {
-    ease: __WEBPACK_IMPORTED_MODULE_6__utils_ease__["a" /* default */],
-    filters: __WEBPACK_IMPORTED_MODULE_7__utils_filters__
-  },
-  Animator: __WEBPACK_IMPORTED_MODULE_8__Animator__["a" /* default */]
-};
-
-window.animator = animator;
-/* harmony default export */ __webpack_exports__["default"] = animator;
-
-/***/ }),
-
-/***/ 61:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Animator = function () {
-  function Animator(shape) {
-    _classCallCheck(this, Animator);
-
-    this.shape = shape;
-
-    this.playing = true;
-    this.start = false;
-    this.lastTimestamp = Number.POSITIVE_INFINITY;
-    this.loop = false;
-  }
-
-  _createClass(Animator, [{
-    key: "enterframeTicker",
-    value: function enterframeTicker(enterframe) {
-      if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(enterframe);
-      } else {
-        setTimeout(enterframe.bind(this, new Date().getTime()), Animator.DEFAULT_ELAPSED);
-      }
-    }
-  }, {
-    key: "_enterframe",
-    value: function _enterframe(timestamp) {
-      if (this.playing) {
-        if (!this.start) {
-          this.start = timestamp;
-        }
-        var elapsed = (timestamp - this.lastTimestamp) / 1000;
-        this.lastTimestamp = timestamp;
-
-        if (this.shape.context) {
-          this.shape.context.clearRect(0, 0, this.shape.context.canvas.width, this.shape.context.canvas.height);
-        }
-        this.shape.worldX = this.shape.x;
-        this.shape.worldY = this.shape.y;
-        this.shape.worldZ = this.shape.z;
-        if (elapsed >= 0) {
-          this.shape.update(elapsed);
-        } else {
-          this.shape.update(Animator.DEFAULT_ELAPSED);
-        }
-
-        if (!this.shape.stopped || this.loop) {
-          this.enterframeTicker(this._enterframe.bind(this));
-        }
-      }
-    }
-  }, {
-    key: "play",
-    value: function play() {
-      var loop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-      this.loop = loop;
-      this.playing = true;
-      this.start = null;
-      this.lastTimestamp = Number.POSITIVE_INFINITY;
-      // this.lastTimestamp = window.performance.now() // 不一定准
-      this.enterframeTicker(this._enterframe.bind(this));
-    }
-  }, {
-    key: "replay",
-    value: function replay() {
-      this.shape.reset();
-      this.play();
-    }
-  }, {
-    key: "pause",
-    value: function pause() {
-      this.playing = false;
-    }
-  }]);
-
-  return Animator;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = Animator;
-
-
-Animator.DEFAULT_ELAPSED = 1000 / 60;
-
-/***/ }),
-
-/***/ 62:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -489,123 +333,7 @@ ShapeContainer.rotate = function (x, y, z, rotationX, rotationY, rotationZ) {
 
 /***/ }),
 
-/***/ 63:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Circle = function (_Shape) {
-  _inherits(Circle, _Shape);
-
-  function Circle() {
-    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var color = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
-    var distance = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : Number.MAX_SAFE_INTEGER;
-
-    _classCallCheck(this, Circle);
-
-    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y, z, distance));
-
-    _this.r = r;
-    _this.color = color;
-    return _this;
-  }
-
-  _createClass(Circle, [{
-    key: 'draw',
-    value: function draw() {
-      this.context.beginPath();
-      this.context.arc(this.worldX, this.worldY, this.r * this.finalScale, 0, 2 * Math.PI);
-      this.context.fillStyle = this.color;
-      this.context.fill();
-    }
-  }]);
-
-  return Circle;
-}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = Circle;
-
-/***/ }),
-
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Rect = function (_Shape) {
-  _inherits(Rect, _Shape);
-
-  function Rect() {
-    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
-    var color = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
-    var distance = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : Number.MAX_SAFE_INTEGER;
-
-    _classCallCheck(this, Rect);
-
-    var _this = _possibleConstructorReturn(this, (Rect.__proto__ || Object.getPrototypeOf(Rect)).call(this, context, x, y, z, distance));
-
-    _this.width = w;
-    _this.height = h;
-    _this.color = color;
-    return _this;
-  }
-
-  _createClass(Rect, [{
-    key: 'draw',
-    value: function draw() {
-      this.context.save();
-
-      this.context.translate(this.worldX, this.worldY);
-      this.context.rotate(this.rotationZ);
-
-      var actualWidth = this.width * this.finalScale;
-      var actualHeight = this.height * this.finalScale;
-
-      this.context.fillStyle = this.color;
-      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
-
-      this.context.restore();
-    }
-  }]);
-
-  return Rect;
-}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = Rect;
-
-/***/ }),
-
-/***/ 65:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -687,7 +415,7 @@ var Ring = function (_Shape) {
 
 /***/ }),
 
-/***/ 66:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -771,7 +499,7 @@ var Star = function (_Shape) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -919,6 +647,278 @@ ease.expoInOut = function (t) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ease;
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Star__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_ease__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_filters__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Animator__ = __webpack_require__(65);
+// import Bang from './animations/Bang'
+// import Bangs from './animations/Bangs'
+// import Circles from './animations/Circles'
+// import Cube from './animations/Cube'
+// import Squares from './animations/Squares'
+// import TweenTest from './animations/TweenTest'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var animator = {
+  // animations: {
+  //   Bang,
+  //   Bangs,
+  //   Circles,
+  //   Cube,
+  //   Squares,
+  //   TweenTest
+  // },
+  base: {
+    Shape: __WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */],
+    ShapeContainer: __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]
+  },
+  shapes: {
+    Circle: __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__["a" /* default */],
+    Rect: __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__["a" /* default */],
+    Ring: __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__["a" /* default */],
+    Star: __WEBPACK_IMPORTED_MODULE_5__shapes_Star__["a" /* default */]
+  },
+  utils: {
+    ease: __WEBPACK_IMPORTED_MODULE_6__utils_ease__["a" /* default */],
+    filters: __WEBPACK_IMPORTED_MODULE_7__utils_filters__
+  },
+  Animator: __WEBPACK_IMPORTED_MODULE_8__Animator__["a" /* default */]
+};
+
+window.animator = animator;
+/* harmony default export */ __webpack_exports__["default"] = animator;
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Animator = function () {
+  function Animator(shape) {
+    _classCallCheck(this, Animator);
+
+    this.shape = shape;
+
+    this.playing = true;
+    this.start = false;
+    this.lastTimestamp = Number.POSITIVE_INFINITY;
+    this.loop = false;
+  }
+
+  _createClass(Animator, [{
+    key: "enterframeTicker",
+    value: function enterframeTicker(enterframe) {
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(enterframe);
+      } else {
+        setTimeout(enterframe.bind(this, new Date().getTime()), Animator.DEFAULT_ELAPSED);
+      }
+    }
+  }, {
+    key: "_enterframe",
+    value: function _enterframe(timestamp) {
+      if (this.playing) {
+        if (!this.start) {
+          this.start = timestamp;
+        }
+        var elapsed = (timestamp - this.lastTimestamp) / 1000;
+        this.lastTimestamp = timestamp;
+
+        if (this.shape.context) {
+          this.shape.context.clearRect(0, 0, this.shape.context.canvas.width, this.shape.context.canvas.height);
+        }
+        this.shape.worldX = this.shape.x;
+        this.shape.worldY = this.shape.y;
+        this.shape.worldZ = this.shape.z;
+        if (elapsed >= 0) {
+          this.shape.update(elapsed);
+        } else {
+          this.shape.update(Animator.DEFAULT_ELAPSED);
+        }
+
+        if (!this.shape.stopped || this.loop) {
+          this.enterframeTicker(this._enterframe.bind(this));
+        }
+      }
+    }
+  }, {
+    key: "play",
+    value: function play() {
+      var loop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      this.loop = loop;
+      this.playing = true;
+      this.start = null;
+      this.lastTimestamp = Number.POSITIVE_INFINITY;
+      // this.lastTimestamp = window.performance.now() // 不一定准
+      this.enterframeTicker(this._enterframe.bind(this));
+    }
+  }, {
+    key: "replay",
+    value: function replay() {
+      this.shape.reset();
+      this.play();
+    }
+  }, {
+    key: "pause",
+    value: function pause() {
+      this.playing = false;
+    }
+  }]);
+
+  return Animator;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = Animator;
+
+
+Animator.DEFAULT_ELAPSED = 1000 / 60;
+
+/***/ }),
+
+/***/ 66:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Circle = function (_Shape) {
+  _inherits(Circle, _Shape);
+
+  function Circle() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var color = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
+    var distance = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : Number.MAX_SAFE_INTEGER;
+
+    _classCallCheck(this, Circle);
+
+    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y, z, distance));
+
+    _this.r = r;
+    _this.color = color;
+    return _this;
+  }
+
+  _createClass(Circle, [{
+    key: 'draw',
+    value: function draw() {
+      this.context.beginPath();
+      this.context.arc(this.worldX, this.worldY, this.r * this.finalScale, 0, 2 * Math.PI);
+      this.context.fillStyle = this.color;
+      this.context.fill();
+    }
+  }]);
+
+  return Circle;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Circle;
+
+/***/ }),
+
+/***/ 67:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Rect = function (_Shape) {
+  _inherits(Rect, _Shape);
+
+  function Rect() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
+    var color = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
+    var distance = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : Number.MAX_SAFE_INTEGER;
+
+    _classCallCheck(this, Rect);
+
+    var _this = _possibleConstructorReturn(this, (Rect.__proto__ || Object.getPrototypeOf(Rect)).call(this, context, x, y, z, distance));
+
+    _this.width = w;
+    _this.height = h;
+    _this.color = color;
+    return _this;
+  }
+
+  _createClass(Rect, [{
+    key: 'draw',
+    value: function draw() {
+      this.context.save();
+
+      this.context.translate(this.worldX, this.worldY);
+      this.context.rotate(this.rotationZ);
+
+      var actualWidth = this.width * this.finalScale;
+      var actualHeight = this.height * this.finalScale;
+
+      this.context.fillStyle = this.color;
+      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
+
+      this.context.restore();
+    }
+  }]);
+
+  return Rect;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Rect;
 
 /***/ }),
 
