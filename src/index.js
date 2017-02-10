@@ -8,7 +8,9 @@
 import Shape from './base/Shape'
 import ShapeContainer from './base/ShapeContainer'
 
+import Bitmap from './shapes/Bitmap'
 import Circle from './shapes/Circle'
+import Pattern from './shapes/Pattern'
 import Rect from './shapes/Rect'
 import Ring from './shapes/Ring'
 import Star from './shapes/Star'
@@ -32,7 +34,9 @@ const animator = {
     ShapeContainer
   },
   shapes: {
+    Bitmap,
     Circle,
+    Pattern,
     Rect,
     Ring,
     Star
