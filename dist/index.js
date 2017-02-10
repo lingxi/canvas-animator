@@ -73,116 +73,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 311);
+/******/ 	return __webpack_require__(__webpack_require__.s = 313);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Shape = function () {
-  function Shape() {
-    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var distance = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : Number.MAX_SAFE_INTEGER;
-
-    _classCallCheck(this, Shape);
-
-    this.x = x;
-    this.y = y;
-    this.z = z;
-
-    this.context = context;
-    this.distance = distance;
-
-    this.worldX = this.x;
-    this.worldY = this.y;
-    this.worldZ = this.z;
-
-    this.rotationX = 0;
-    this.rotationY = 0;
-    this.rotationZ = 0;
-    this.rotationVelX = 0;
-    this.rotationVelY = 0;
-    this.rotationVelZ = 0;
-
-    this.scale = 1;
-    this.zScale = 1;
-    this.finalScale = 1;
-
-    this.alpha = 1;
-
-    this.loop = false;
-    this.period = false;
-
-    this.autoRemoveWhenStopped = true;
-
-    this.reset();
-    this.map();
-  }
-
-  _createClass(Shape, [{
-    key: "reset",
-    value: function reset() {
-      this.stopped = false;
-      this.total = 0;
-      this.progress = 0;
-    }
-
-    // 3D => 2D
-
-  }, {
-    key: "map",
-    value: function map() {
-      this.zScale = (this.worldZ + this.distance) / this.distance;
-      this.worldX *= this.zScale;
-      this.worldY *= this.zScale;
-    }
-  }, {
-    key: "update",
-    value: function update(elapsed) {
-      if (!this.stopped) {
-        if (this.period) {
-          this.progress = this.total / this.period;
-          // console.log(elapsed, this.progress, this.total, this.period)
-          if (this.progress >= 1) {
-            if (!this.loop) {
-              this.stopped = true;
-              this.total = this.period;
-              this.progress = 1;
-            } else {
-              this.total = 0;
-              this.progress = 0;
-            }
-          }
-        }
-
-        this.rotationX += this.rotationVelX * elapsed;
-        this.rotationY += this.rotationVelY * elapsed;
-        this.rotationZ += this.rotationVelZ * elapsed;
-        this.finalScale = this.zScale * this.scale;
-
-        this.total += elapsed;
-      }
-    }
-  }]);
-
-  return Shape;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = Shape;
-
-/***/ }),
-
-/***/ 311:
+/***/ 313:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(64);
@@ -194,7 +90,7 @@ module.exports = __webpack_require__(64);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shape__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -337,7 +233,7 @@ ShapeContainer.rotate = function (x, y, z, rotationX, rotationY, rotationZ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -419,7 +315,7 @@ var Ring = function (_Shape) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -655,21 +551,25 @@ ease.expoInOut = function (t) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Star__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_ease__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_filters__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Animator__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_ease__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_filters__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Animator__ = __webpack_require__(65);
 // import Bang from './animations/Bang'
 // import Bangs from './animations/Bangs'
 // import Circles from './animations/Circles'
 // import Cube from './animations/Cube'
 // import Squares from './animations/Squares'
 // import TweenTest from './animations/TweenTest'
+
+
 
 
 
@@ -698,16 +598,18 @@ var animator = {
     ShapeContainer: __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]
   },
   shapes: {
-    Circle: __WEBPACK_IMPORTED_MODULE_2__shapes_Circle__["a" /* default */],
-    Rect: __WEBPACK_IMPORTED_MODULE_3__shapes_Rect__["a" /* default */],
-    Ring: __WEBPACK_IMPORTED_MODULE_4__shapes_Ring__["a" /* default */],
-    Star: __WEBPACK_IMPORTED_MODULE_5__shapes_Star__["a" /* default */]
+    Bitmap: __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__["a" /* default */],
+    Circle: __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__["a" /* default */],
+    Pattern: __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__["a" /* default */],
+    Rect: __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__["a" /* default */],
+    Ring: __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__["a" /* default */],
+    Star: __WEBPACK_IMPORTED_MODULE_7__shapes_Star__["a" /* default */]
   },
   utils: {
-    ease: __WEBPACK_IMPORTED_MODULE_6__utils_ease__["a" /* default */],
-    filters: __WEBPACK_IMPORTED_MODULE_7__utils_filters__
+    ease: __WEBPACK_IMPORTED_MODULE_8__utils_ease__["a" /* default */],
+    filters: __WEBPACK_IMPORTED_MODULE_9__utils_filters__
   },
-  Animator: __WEBPACK_IMPORTED_MODULE_8__Animator__["a" /* default */]
+  Animator: __WEBPACK_IMPORTED_MODULE_10__Animator__["a" /* default */]
 };
 
 window.animator = animator;
@@ -810,7 +712,77 @@ Animator.DEFAULT_ELAPSED = 1000 / 60;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Bitmap = function (_Shape) {
+  _inherits(Bitmap, _Shape);
+
+  function Bitmap() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
+    var img = arguments[6];
+    var srcRect = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
+    var repeat = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 'repeat';
+    var distance = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : Number.MAX_SAFE_INTEGER;
+
+    _classCallCheck(this, Bitmap);
+
+    var _this = _possibleConstructorReturn(this, (Bitmap.__proto__ || Object.getPrototypeOf(Bitmap)).call(this, context, x, y, z, distance));
+
+    _this.width = w;
+    _this.height = h;
+    _this.image = img;
+    _this.srcRect = srcRect; // { x, y, width, height }
+    return _this;
+  }
+
+  _createClass(Bitmap, [{
+    key: 'draw',
+    value: function draw() {
+      this.context.save();
+
+      this.context.translate(this.worldX, this.worldY);
+      this.context.rotate(this.rotationZ);
+
+      var actualWidth = this.width * this.finalScale;
+      var actualHeight = this.height * this.finalScale;
+
+      this.context.fillStyle = this.pattern;
+      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
+      if (this.srcRect) {
+        this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
+      } else {
+        this.context.drawImage(this.image, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
+      }
+      this.context.restore();
+    }
+  }]);
+
+  return Bitmap;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Bitmap;
+
+/***/ }),
+
+/***/ 67:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -859,11 +831,75 @@ var Circle = function (_Shape) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 68:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Pattern = function (_Shape) {
+  _inherits(Pattern, _Shape);
+
+  function Pattern() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
+    var img = arguments[6];
+    var repeat = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 'repeat';
+    var distance = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : Number.MAX_SAFE_INTEGER;
+
+    _classCallCheck(this, Pattern);
+
+    var _this = _possibleConstructorReturn(this, (Pattern.__proto__ || Object.getPrototypeOf(Pattern)).call(this, context, x, y, z, distance));
+
+    _this.width = w;
+    _this.height = h;
+    _this.pattern = context.createPattern(img, repeat);
+    return _this;
+  }
+
+  _createClass(Pattern, [{
+    key: 'draw',
+    value: function draw() {
+      this.context.save();
+
+      this.context.translate(this.worldX, this.worldY);
+      this.context.rotate(this.rotationZ);
+
+      var actualWidth = this.width * this.finalScale;
+      var actualHeight = this.height * this.finalScale;
+
+      this.context.fillStyle = this.pattern;
+      this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight);
+
+      this.context.restore();
+    }
+  }]);
+
+  return Pattern;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Pattern;
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -922,7 +958,7 @@ var Rect = function (_Shape) {
 
 /***/ }),
 
-/***/ 68:
+/***/ 70:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -941,6 +977,110 @@ var back = function back(progress) {
   }
   return progress;
 };
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Shape = function () {
+  function Shape() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var distance = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : Number.MAX_SAFE_INTEGER;
+
+    _classCallCheck(this, Shape);
+
+    this.x = x;
+    this.y = y;
+    this.z = z;
+
+    this.context = context;
+    this.distance = distance;
+
+    this.worldX = this.x;
+    this.worldY = this.y;
+    this.worldZ = this.z;
+
+    this.rotationX = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    this.rotationVelX = 0;
+    this.rotationVelY = 0;
+    this.rotationVelZ = 0;
+
+    this.scale = 1;
+    this.zScale = 1;
+    this.finalScale = 1;
+
+    this.alpha = 1;
+
+    this.loop = false;
+    this.period = false;
+
+    this.autoRemoveWhenStopped = true;
+
+    this.reset();
+    this.map();
+  }
+
+  _createClass(Shape, [{
+    key: "reset",
+    value: function reset() {
+      this.stopped = false;
+      this.total = 0;
+      this.progress = 0;
+    }
+
+    // 3D => 2D
+
+  }, {
+    key: "map",
+    value: function map() {
+      this.zScale = (this.worldZ + this.distance) / this.distance;
+      this.worldX *= this.zScale;
+      this.worldY *= this.zScale;
+    }
+  }, {
+    key: "update",
+    value: function update(elapsed) {
+      if (!this.stopped) {
+        if (this.period) {
+          this.progress = this.total / this.period;
+          // console.log(elapsed, this.progress, this.total, this.period)
+          if (this.progress >= 1) {
+            if (!this.loop) {
+              this.stopped = true;
+              this.total = this.period;
+              this.progress = 1;
+            } else {
+              this.total = 0;
+              this.progress = 0;
+            }
+          }
+        }
+
+        this.rotationX += this.rotationVelX * elapsed;
+        this.rotationY += this.rotationVelY * elapsed;
+        this.rotationZ += this.rotationVelZ * elapsed;
+        this.finalScale = this.zScale * this.scale;
+
+        this.total += elapsed;
+      }
+    }
+  }]);
+
+  return Shape;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = Shape;
 
 /***/ })
 

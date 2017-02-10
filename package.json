@@ -1,6 +1,6 @@
 {
   "name": "canvas-animator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Several simple classes for building canvas animation.",
   "main": "dist/index.js",
   "scripts": {
