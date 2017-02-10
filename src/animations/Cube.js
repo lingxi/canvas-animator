@@ -16,8 +16,9 @@ export default class Cube extends ShapeContainer {
       new Circle(this.context, -l, -l, l, r, '#ff88eb'), // 6
       new Circle(this.context, -l, -l, -l, r, '#c4ebad') // 7
     ]
-    for (const c of this.circles) {
-      this.add(c)
+    for (let i = 0; i < this.circles.length; i++) {
+      const circle = this.circles[i]
+      this.add(circle)
     }
     this.lines = [
       { from: 0, to: 1, color: '#00b0df' },
@@ -65,7 +66,8 @@ export default class Cube extends ShapeContainer {
   }
 
   _drawLines () {
-    for (const line of this.lines) {
+    for (let i = 0; i < this.lines.length; i++) {
+      const line = this.lines[i]
       const fromCircle = this.circles[line.from]
       const toCircle = this.circles[line.to]
       this.context.beginPath()

@@ -46,7 +46,8 @@ export default class Bang extends ShapeContainer {
 
     const alphaProgress = 0.6
     const easedProgress = ease.expoOut(this.progress)
-    for (const star of this.stars) {
+    for (let i = 0; i < this.stars.length; i++) {
+      const star = this.stars[i]
       star.x = Math.cos(star.dir) * star.len * easedProgress
       star.y = Math.sin(star.dir) * star.len * easedProgress
     }
@@ -59,7 +60,8 @@ export default class Bang extends ShapeContainer {
       const subProgress = (this.progress - alphaProgress) / (1 - alphaProgress)
       const alpha = 1 - subProgress
       this.ring.alpha = alpha
-      for (const star of this.stars) {
+      for (let i = 0; i < this.stars.length; i++) {
+        const star = this.stars[i]
         star.alpha = alpha
         star.scale = alpha
       }

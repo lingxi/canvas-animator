@@ -1,9 +1,9 @@
-import Bang from './animations/Bang'
-import Bangs from './animations/Bangs'
-import Circles from './animations/Circles'
-import Cube from './animations/Cube'
-import Squares from './animations/Squares'
-import TweenTest from './animations/TweenTest'
+// import Bang from './animations/Bang'
+// import Bangs from './animations/Bangs'
+// import Circles from './animations/Circles'
+// import Cube from './animations/Cube'
+// import Squares from './animations/Squares'
+// import TweenTest from './animations/TweenTest'
 
 import Shape from './base/Shape'
 import ShapeContainer from './base/ShapeContainer'
@@ -19,14 +19,14 @@ import * as filters from './utils/filters'
 import Animator from './Animator'
 
 const animator = {
-  animations: {
-    Bang,
-    Bangs,
-    Circles,
-    Cube,
-    Squares,
-    TweenTest
-  },
+  // animations: {
+  //   Bang,
+  //   Bangs,
+  //   Circles,
+  //   Cube,
+  //   Squares,
+  //   TweenTest
+  // },
   base: {
     Shape,
     ShapeContainer

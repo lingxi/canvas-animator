@@ -1,4 +1,4 @@
-import animator from '../dist/index.js'
+import animator from '../src/index.js'
 
 const canvas = document.getElementById('js-canvas')
 canvas.width = document.body.clientWidth
