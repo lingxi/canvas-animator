@@ -973,6 +973,7 @@ var Shape = function () {
     this.finalScale = 1;
 
     this.alpha = 1;
+    this.filter = 'none';
 
     this.width = Number.NaN;
     this.height = Number.NaN;
@@ -989,7 +990,7 @@ var Shape = function () {
   }
 
   _createClass(Shape, [{
-    key: "reset",
+    key: 'reset',
     value: function reset() {
       this.stopped = false;
       this.total = 0;
@@ -999,14 +1000,14 @@ var Shape = function () {
     // 3D => 2D
 
   }, {
-    key: "map",
+    key: 'map',
     value: function map() {
       this.zScale = (this.worldZ + this.distance) / this.distance;
       this.worldX *= this.zScale;
       this.worldY *= this.zScale;
     }
   }, {
-    key: "update",
+    key: 'update',
     value: function update(elapsed) {
       if (!this.stopped) {
         if (this.period) {
@@ -1033,13 +1034,14 @@ var Shape = function () {
       }
     }
   }, {
-    key: "draw",
+    key: 'draw',
     value: function draw() {
       this.context.save();
 
       this.context.translate(this.worldX, this.worldY);
       this.context.rotate(this.rotationZ);
       this.context.globalAlpha = this.alpha;
+      this.context.filter = this.filter;
 
       this.actualWidth = this.width * this.finalScale;
       this.actualHeight = this.height * this.finalScale;

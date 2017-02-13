@@ -251,6 +251,7 @@ var Shape = function () {
     this.finalScale = 1;
 
     this.alpha = 1;
+    this.filter = 'none';
 
     this.width = Number.NaN;
     this.height = Number.NaN;
@@ -267,7 +268,7 @@ var Shape = function () {
   }
 
   _createClass(Shape, [{
-    key: "reset",
+    key: 'reset',
     value: function reset() {
       this.stopped = false;
       this.total = 0;
@@ -277,14 +278,14 @@ var Shape = function () {
     // 3D => 2D
 
   }, {
-    key: "map",
+    key: 'map',
     value: function map() {
       this.zScale = (this.worldZ + this.distance) / this.distance;
       this.worldX *= this.zScale;
       this.worldY *= this.zScale;
     }
   }, {
-    key: "update",
+    key: 'update',
     value: function update(elapsed) {
       if (!this.stopped) {
         if (this.period) {
@@ -311,13 +312,14 @@ var Shape = function () {
       }
     }
   }, {
-    key: "draw",
+    key: 'draw',
     value: function draw() {
       this.context.save();
 
       this.context.translate(this.worldX, this.worldY);
       this.context.rotate(this.rotationZ);
       this.context.globalAlpha = this.alpha;
+      this.context.filter = this.filter;
 
       this.actualWidth = this.width * this.finalScale;
       this.actualHeight = this.height * this.finalScale;
@@ -4794,6 +4796,7 @@ var TweenTest = function (_ShapeContainer) {
     var bitmap = new __WEBPACK_IMPORTED_MODULE_0__shapes_Bitmap__["a" /* default */](context, 0, 0, 0, 248, 36, img);
     var bitmapAlpha = new __WEBPACK_IMPORTED_MODULE_0__shapes_Bitmap__["a" /* default */](context, 0, 100, 0, 128, 18, img, { x: 0, y: 0, width: 128, height: 18 });
     bitmapAlpha.alpha = 0.5;
+    bitmapAlpha.filter = 'blur(2px)';
     _this.add(pattern);
     _this.add(bitmap);
     _this.add(bitmapAlpha);
