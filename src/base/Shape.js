@@ -23,6 +23,7 @@ export default class Shape {
     this.finalScale = 1
 
     this.alpha = 1
+    this.filter = 'none'
 
     this.width = Number.NaN
     this.height = Number.NaN
@@ -83,6 +84,7 @@ export default class Shape {
     this.context.translate(this.worldX, this.worldY)
     this.context.rotate(this.rotationZ)
     this.context.globalAlpha = this.alpha
+    this.context.filter = this.filter
 
     this.actualWidth = this.width * this.finalScale
     this.actualHeight = this.height * this.finalScale
