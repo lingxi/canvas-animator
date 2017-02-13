@@ -1,12 +1,11 @@
 # WIP
 
+### Examples
+[https://lingxiteam.github.io/canvas-animator/](https://lingxiteam.github.io/canvas-animator/)
+
 ```javascript
 import Animator from './Animator'
 import Animation from './animations/Bangs'
-// import Animation from './animations/Circles'
-// import Animation from './animations/Cube'
-// import Animation from './animations/Squares'
-// import Animation from './animations/TweenTest'
 
 const canvas = document.getElementById('js-canvas')
 canvas.width = document.body.clientWidth
