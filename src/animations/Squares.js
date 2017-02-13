@@ -20,9 +20,4 @@ export default class Squares extends ShapeContainer {
       this.add(rect)
     })
   }
-
-  update (elapsed) {
-    super.update(elapsed)
-    this.draw()
-  }
 }

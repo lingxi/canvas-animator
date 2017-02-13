@@ -45,9 +45,4 @@ export default class Circles extends ShapeContainer {
 
     this.rotationVelZ = Math.PI * 0.2
   }
-
-  update (elapsed) {
-    super.update(elapsed)
-    this.draw()
-  }
 }

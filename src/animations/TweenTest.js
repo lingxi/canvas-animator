@@ -17,8 +17,6 @@ export default class TweenTest extends ShapeContainer {
 
   update (elapsed) {
     super.update(elapsed)
-    this.draw()
-
     const zero = -this.len / 2
     this.circle.x = zero + ease.circOut(this.progress) * this.len
   }

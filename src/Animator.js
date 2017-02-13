@@ -32,6 +32,7 @@ export default class Animator {
       this.shape.worldZ = this.shape.z
       if (elapsed >= 0) {
         this.shape.update(Math.min(elapsed, Animator.DEFAULT_ELAPSED_MAX))
+        this.shape.draw()
       }
 
       if (!this.shape.stopped || this.loop) {

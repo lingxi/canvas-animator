@@ -2626,6 +2626,7 @@ var Animator = function () {
         this.shape.worldZ = this.shape.z;
         if (elapsed >= 0) {
           this.shape.update(Math.min(elapsed, Animator.DEFAULT_ELAPSED_MAX));
+          this.shape.draw();
         }
 
         if (!this.shape.stopped || this.loop) {
@@ -3614,8 +3615,6 @@ var Bang = function (_ShapeContainer) {
           _star.scale = alpha;
         }
       }
-
-      this.draw();
     }
   }]);
 
@@ -4645,14 +4644,6 @@ var Circles = function (_ShapeContainer) {
     return _this2;
   }
 
-  _createClass(Circles, [{
-    key: 'update',
-    value: function update(elapsed) {
-      _get(Circles.prototype.__proto__ || Object.getPrototypeOf(Circles.prototype), 'update', this).call(this, elapsed);
-      this.draw();
-    }
-  }]);
-
   return Circles;
 }(__WEBPACK_IMPORTED_MODULE_2__base_ShapeContainer__["a" /* default */]);
 
@@ -4752,14 +4743,12 @@ var Cube = function (_ShapeContainer) {
       }
     }
   }, {
-    key: 'update',
-    value: function update(elapsed) {
-      _get(Cube.prototype.__proto__ || Object.getPrototypeOf(Cube.prototype), 'update', this).call(this, elapsed);
-
+    key: 'draw',
+    value: function draw() {
       this._drawLines();
 
       // draw circles
-      this.draw();
+      _get(Cube.prototype.__proto__ || Object.getPrototypeOf(Cube.prototype), 'draw', this).call(this);
     }
   }]);
 
@@ -4776,10 +4765,6 @@ var Cube = function (_ShapeContainer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shapes_Bitmap__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shapes_Pattern__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_ShapeContainer__ = __webpack_require__(22);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -4815,14 +4800,6 @@ var TweenTest = function (_ShapeContainer) {
     return _this;
   }
 
-  _createClass(TweenTest, [{
-    key: 'update',
-    value: function update(elapsed) {
-      _get(TweenTest.prototype.__proto__ || Object.getPrototypeOf(TweenTest.prototype), 'update', this).call(this, elapsed);
-      this.draw();
-    }
-  }]);
-
   return TweenTest;
 }(__WEBPACK_IMPORTED_MODULE_2__base_ShapeContainer__["a" /* default */]);
 
@@ -4835,10 +4812,6 @@ var TweenTest = function (_ShapeContainer) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shapes_Rect__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(22);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -4873,14 +4846,6 @@ var Squares = function (_ShapeContainer) {
     });
     return _this;
   }
-
-  _createClass(Squares, [{
-    key: 'update',
-    value: function update(elapsed) {
-      _get(Squares.prototype.__proto__ || Object.getPrototypeOf(Squares.prototype), 'update', this).call(this, elapsed);
-      this.draw();
-    }
-  }]);
 
   return Squares;
 }(__WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]);
@@ -4938,8 +4903,6 @@ var TweenTest = function (_ShapeContainer) {
     key: 'update',
     value: function update(elapsed) {
       _get(TweenTest.prototype.__proto__ || Object.getPrototypeOf(TweenTest.prototype), 'update', this).call(this, elapsed);
-      this.draw();
-
       var zero = -this.len / 2;
       this.circle.x = zero + __WEBPACK_IMPORTED_MODULE_1__utils_ease__["a" /* default */].circOut(this.progress) * this.len;
     }

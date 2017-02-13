@@ -78,12 +78,10 @@ export default class Cube extends ShapeContainer {
     }
   }
 
-  update (elapsed) {
-    super.update(elapsed)
-
+  draw () {
     this._drawLines()
 
     // draw circles
-    this.draw()
+    super.draw()
   }
 }

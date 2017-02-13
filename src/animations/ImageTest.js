@@ -14,9 +14,4 @@ export default class TweenTest extends ShapeContainer {
     this.add(bitmap)
     this.add(bitmapAlpha)
   }
-
-  update (elapsed) {
-    super.update(elapsed)
-    this.draw()
-  }
 }

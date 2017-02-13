@@ -66,7 +66,5 @@ export default class Bang extends ShapeContainer {
         star.scale = alpha
       }
     }
-
-    this.draw()
   }
 }
