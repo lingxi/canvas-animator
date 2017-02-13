@@ -663,9 +663,7 @@ var Animator = function () {
         this.shape.worldY = this.shape.y;
         this.shape.worldZ = this.shape.z;
         if (elapsed >= 0) {
-          this.shape.update(elapsed);
-        } else {
-          this.shape.update(Animator.DEFAULT_ELAPSED);
+          this.shape.update(Math.min(elapsed, Animator.DEFAULT_ELAPSED_MAX));
         }
 
         if (!this.shape.stopped || this.loop) {
@@ -704,7 +702,8 @@ var Animator = function () {
 /* harmony default export */ __webpack_exports__["a"] = Animator;
 
 
-Animator.DEFAULT_ELAPSED = 1000 / 60;
+Animator.DEFAULT_ELAPSED = 1 / 60;
+Animator.DEFAULT_ELAPSED_MAX = Animator.DEFAULT_ELAPSED * 4; // 1 / 15
 
 /***/ }),
 
