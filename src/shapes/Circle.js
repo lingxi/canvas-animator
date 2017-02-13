@@ -7,9 +7,9 @@ export default class Circle extends Shape {
     this.color = color
   }
 
-  draw () {
+  _draw () {
     this.context.beginPath()
-    this.context.arc(this.worldX, this.worldY, this.r * this.finalScale, 0, 2 * Math.PI)
+    this.context.arc(0, 0, this.r * this.finalScale, 0, 2 * Math.PI)
     this.context.fillStyle = this.color
     this.context.fill()
   }

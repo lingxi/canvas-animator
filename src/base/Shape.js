@@ -24,6 +24,11 @@ export default class Shape {
 
     this.alpha = 1
 
+    this.width = Number.NaN
+    this.height = Number.NaN
+    this.actualWidth = Number.NaN
+    this.actualHeight = Number.NaN
+
     this.loop = false
     this.period = false
 
@@ -70,5 +75,22 @@ export default class Shape {
 
       this.total += elapsed
     }
+  }
+
+  draw () {
+    this.context.save()
+
+    this.context.translate(this.worldX, this.worldY)
+    this.context.rotate(this.rotationZ)
+    this.context.globalAlpha = this.alpha
+
+    this.actualWidth = this.width * this.finalScale
+    this.actualHeight = this.height * this.finalScale
+
+    if (this._draw) {
+      this._draw()
+    }
+
+    this.context.restore()
   }
 }

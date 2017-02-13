@@ -11,7 +11,7 @@
 
   <body>
     <style>
-      html, body, canvas{
+      html, body{
         width: 100%;
         height: 100%;
         margin: 0;
@@ -21,8 +21,11 @@
         user-select: none;
       }
       canvas{
+        width: 100%;
+        height: 400px;
         display: block;
         -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        border: 2px solid #7f7f7f
       }
     </style>
 
@@ -30,7 +33,13 @@
 
     <img id="test-img" src="http://www.lingxi360.com/Application/Home/View/lx/styles/css/images/logo.png" style="display: none">
 
-    <canvas id="js-canvas"></canvas>
+    <canvas id="js-canvas-bang"></canvas>
+    <canvas id="js-canvas-bangs"></canvas>
+    <canvas id="js-canvas-circles"></canvas>
+    <canvas id="js-canvas-cube"></canvas>
+    <canvas id="js-canvas-image-test"></canvas>
+    <canvas id="js-canvas-squares"></canvas>
+    <canvas id="js-canvas-tween-test"></canvas>
 
     <!--<script src="lib/preloadjs-NEXT.min.js"></script>
     <script src="lib/easeljs-NEXT.min.js"></script>

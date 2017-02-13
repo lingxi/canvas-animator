@@ -11,13 +11,7 @@ export default class Star extends Shape {
     this.lineWidth = lineWidth
   }
 
-  draw () {
-    this.context.save()
-
-    this.context.translate(this.worldX, this.worldY)
-    this.context.rotate(this.rotationZ)
-    this.context.globalAlpha = this.alpha
-
+  _draw () {
     this.context.miterLimit = this.R
     this.context.beginPath()
     const R = this.R * this.finalScale
@@ -37,7 +31,5 @@ export default class Star extends Shape {
     this.context.lineWidth = this.lineWidth
     this.context.strokeStyle = this.strokeStyle
     this.context.stroke()
-
-    this.context.restore()
   }
 }

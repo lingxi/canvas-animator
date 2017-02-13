@@ -8,13 +8,7 @@ export default class Ring extends Shape {
     this.fillStyle = fillStyle
   }
 
-  draw () {
-    this.context.save()
-
-    this.context.translate(this.worldX, this.worldY)
-    this.context.rotate(this.rotationZ)
-
-    this.context.globalAlpha = this.alpha
+  _draw () {
     this.context.beginPath()
     const R = this.R * this.finalScale
     const r = this.r * this.finalScale
@@ -38,8 +32,5 @@ export default class Ring extends Shape {
 
     this.context.fillStyle = this.fillStyle
     this.context.fill()
-
-
-    this.context.restore()
   }
 }

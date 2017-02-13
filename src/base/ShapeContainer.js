@@ -12,9 +12,9 @@ export default class ShapeContainer extends Shape {
   reset () {
     super.reset()
     if (this.list) {
-      this.list.forEach((entity, i) => {
+      for (let i = 0; i < this.list.length; i++) {
         this.remove(i)
-      })
+      }
     } else {
       this.list = []
     }
@@ -44,7 +44,8 @@ export default class ShapeContainer extends Shape {
   update (elapsed) {
     super.update(elapsed)
     const autoRemoves = []
-    this.list.forEach((entity, i) => {
+    for (let i = 0; i < this.list.length; i++) {
+      const entity = this.list[i]
       if (entity) {
         const { x: rotatedX, y: rotatedY, z: rotatedZ } = ShapeContainer.rotate(entity.x, entity.y, entity.z, this.rotationX, this.rotationY, this.rotationZ)
         entity.worldX = this.worldX + rotatedX
@@ -56,16 +57,19 @@ export default class ShapeContainer extends Shape {
           autoRemoves.push(i)
         }
       }
-    })
-    autoRemoves.forEach(v => {
-      this.remove(v)
-    })
+    }
+    for (let i = 0; i < autoRemoves.length; i++) {
+      this.remove(autoRemoves[i])
+    }
   }
 
   draw () {
-    this.list.forEach(entity => {
-      entity.draw()
-    })
+    for (let i = 0; i < this.list.length; i++) {
+      const entity = this.list[i]
+      if (entity) {
+        entity.draw()
+      }
+    }
   }
 }
 

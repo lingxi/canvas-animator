@@ -9,21 +9,11 @@ export default class Bitmap extends Shape {
     this.srcRect = srcRect // { x, y, width, height }
   }
 
-  draw () {
-    this.context.save()
-
-    this.context.translate(this.worldX, this.worldY)
-    this.context.rotate(this.rotationZ)
-
-    const actualWidth = this.width * this.finalScale
-    const actualHeight = this.height * this.finalScale
-
-    this.context.fillStyle = this.pattern
+  _draw () {
     if (this.srcRect) {
-      this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight)
+      this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
     } else {
-      this.context.drawImage(this.image, -actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight)
+      this.context.drawImage(this.image, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
     }
-    this.context.restore()
   }
 }

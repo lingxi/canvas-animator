@@ -8,18 +8,8 @@ export default class Pattern extends Shape {
     this.pattern = context.createPattern(img, repeat)
   }
 
-  draw () {
-    this.context.save()
-
-    this.context.translate(this.worldX, this.worldY)
-    this.context.rotate(this.rotationZ)
-
-    const actualWidth = this.width * this.finalScale
-    const actualHeight = this.height * this.finalScale
-
+  _draw () {
     this.context.fillStyle = this.pattern
-    this.context.fillRect(-actualWidth / 2, -actualHeight / 2, actualWidth, actualHeight)
-
-    this.context.restore()
+    this.context.fillRect(-this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
   }
 }

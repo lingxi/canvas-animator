@@ -7,6 +7,7 @@ class WavedCircle extends Circle {
     super(context, x, y, z, r, color, distance)
     this.totalTime = 0
     this.period = 2
+    this.loop = true
     this.deltaTime = 0
   }
   update (elapsed) {
