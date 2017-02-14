@@ -73,7 +73,7 @@ export default class Shape {
     easeFunc = easeFunc || ease.quadInOut
     return this.addAnim({
       duration,
-      init: (elapsed) => {
+      init: () => {
         for (const field in target) {
           origin[field] = this[field]
         }
@@ -117,8 +117,14 @@ export default class Shape {
         const initCallback = this.anims[i].init
         if (this.total >= begin && this.total < end) {
           if (this.lastAnimIndex !== i) {
+            if (this.lastAnimIndex >= 0) {
+              const lastUpdate = this.anims[this.lastAnimIndex].update
+              if (lastUpdate) {
+                lastUpdate(1, 0)
+              }
+            }
             if (initCallback) {
-              initCallback(elapsed)
+              initCallback()
             }
             this.lastAnimIndex = i
           }

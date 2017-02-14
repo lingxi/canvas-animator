@@ -316,7 +316,7 @@ var Shape = function () {
       easeFunc = easeFunc || __WEBPACK_IMPORTED_MODULE_0__utils_ease__["a" /* default */].quadInOut;
       return this.addAnim({
         duration: duration,
-        init: function init(elapsed) {
+        init: function init() {
           for (var field in target) {
             origin[field] = _this[field];
           }
@@ -364,8 +364,14 @@ var Shape = function () {
           var initCallback = this.anims[i].init;
           if (this.total >= begin && this.total < end) {
             if (this.lastAnimIndex !== i) {
+              if (this.lastAnimIndex >= 0) {
+                var lastUpdate = this.anims[this.lastAnimIndex].update;
+                if (lastUpdate) {
+                  lastUpdate(1, 0);
+                }
+              }
               if (initCallback) {
-                initCallback(elapsed);
+                initCallback();
               }
               this.lastAnimIndex = i;
             }
