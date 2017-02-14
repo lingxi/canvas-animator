@@ -52,23 +52,23 @@ export default class Shape {
   addAnim ({ duration, init, update }) {
     if (this.anims.length <= 0) {
       this.period = duration
-      this.anims.push({ 
-        end: this.period, 
+      this.anims.push({
+        end: this.period,
         init,
         update
       })
     } else {
       this.period = this.anims[this.anims.length - 1].end + duration
-      this.anims.push({ 
-        end: this.period, 
+      this.anims.push({
+        end: this.period,
         init,
-        update 
+        update
       })
     }
     return this
   }
 
-  addTween ({ duration, target, easeFunc }) {
+  addTween ({ duration, target, easeFunc, update }) {
     const origin = {}
     easeFunc = easeFunc || ease.quadInOut
     return this.addAnim({
@@ -80,7 +80,11 @@ export default class Shape {
       },
       update: (progress, elapsed) => {
         for (const field in target) {
-          this[field] = origin[field] + easeFunc(progress) * (target[field] - origin[field])
+          const targetValue = typeof target[field] === 'function' ? target[field]() : target[field]
+          this[field] = origin[field] + easeFunc(progress) * (targetValue - origin[field])
+        }
+        if (update) {
+          update(progress, elapsed)
         }
       }
     })
@@ -141,7 +145,7 @@ export default class Shape {
       this.rotationZ += this.rotationVelZ * elapsed
       this.finalScale = this.zScale * this.scale
 
-      this.total += elapsed      
+      this.total += elapsed
     }
   }
 

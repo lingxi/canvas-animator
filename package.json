@@ -1,6 +1,6 @@
 {
   "name": "canvas-animator",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Several simple classes for building canvas animation.",
   "main": "dist/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "eslint": "^3.7.1",
     "eslint-config-vue": "^1.1.0",
     "eslint-plugin-html": "^1.5.3",
+    "eslint-plugin-vue": "^2.0.1",
     "jquery": "1.11.2",
     "less": "^2.5.1",
     "less-loader": "^2.2.3",

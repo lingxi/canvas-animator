@@ -310,7 +310,8 @@ var Shape = function () {
 
       var duration = _ref2.duration,
           target = _ref2.target,
-          easeFunc = _ref2.easeFunc;
+          easeFunc = _ref2.easeFunc,
+          _update = _ref2.update;
 
       var origin = {};
       easeFunc = easeFunc || __WEBPACK_IMPORTED_MODULE_0__utils_ease__["a" /* default */].quadInOut;
@@ -323,7 +324,11 @@ var Shape = function () {
         },
         update: function update(progress, elapsed) {
           for (var field in target) {
-            _this[field] = origin[field] + easeFunc(progress) * (target[field] - origin[field]);
+            var targetValue = typeof target[field] === 'function' ? target[field]() : target[field];
+            _this[field] = origin[field] + easeFunc(progress) * (targetValue - origin[field]);
+          }
+          if (_update) {
+            _update(progress, elapsed);
           }
         }
       });
