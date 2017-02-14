@@ -1,5 +1,5 @@
-import Circle from '../shapes/Circle'
-import ShapeContainer from '../base/ShapeContainer'
+import Circle from '../../src/shapes/Circle'
+import ShapeContainer from '../../src/base/ShapeContainer'
 
 export default class Cube extends ShapeContainer {
   constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {

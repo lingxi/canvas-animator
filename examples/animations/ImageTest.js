@@ -1,6 +1,6 @@
-import Bitmap from '../shapes/Bitmap'
-import Pattern from '../shapes/Pattern'
-import ShapeContainer from '../base/ShapeContainer'
+import Bitmap from '../../src/shapes/Bitmap'
+import Pattern from '../../src/shapes/Pattern'
+import ShapeContainer from '../../src/base/ShapeContainer'
 
 export default class TweenTest extends ShapeContainer {
   constructor (context = null, x = 0, y = 0, z = 0, img, distance = Number.MAX_SAFE_INTEGER) {

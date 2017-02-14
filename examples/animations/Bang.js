@@ -1,7 +1,7 @@
-import Star from '../shapes/Star'
-import Ring from '../shapes/Ring'
-import ease from '../utils/ease'
-import ShapeContainer from '../base/ShapeContainer'
+import Star from '../../src/shapes/Star'
+import Ring from '../../src/shapes/Ring'
+import ease from '../../src/utils/ease'
+import ShapeContainer from '../../src/base/ShapeContainer'
 
 const ringColor = '#ffffb2'
 const starColor = '#fbe782'

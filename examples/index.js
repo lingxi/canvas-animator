@@ -1,11 +1,11 @@
 import animator from '../src/index.js'
-import Bang from '../src/animations/Bang'
-import Bangs from '../src/animations/Bangs'
-import Circles from '../src/animations/Circles'
-import Cube from '../src/animations/Cube'
-import ImageTest from '../src/animations/ImageTest'
-import Squares from '../src/animations/Squares'
-import TweenTest from '../src/animations/TweenTest'
+import Bang from './animations/Bang'
+import Bangs from './animations/Bangs'
+import Circles from './animations/Circles'
+import Cube from './animations/Cube'
+import ImageTest from './animations/ImageTest'
+import Squares from './animations/Squares'
+import TweenTest from './animations/TweenTest'
 
 const initExample = (canvasId, animationCreate, onDone) => {
   const canvas = document.getElementById(canvasId)

@@ -1,6 +1,6 @@
-import Star from '../shapes/Star'
-import ease from '../utils/ease'
-import ShapeContainer from '../base/ShapeContainer'
+import Star from '../../src/shapes/Star'
+import ease from '../../src/utils/ease'
+import ShapeContainer from '../../src/base/ShapeContainer'
 
 export default class TweenTest extends ShapeContainer {
   constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
