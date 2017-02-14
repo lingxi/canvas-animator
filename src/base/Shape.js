@@ -1,3 +1,5 @@
+import ease from '../utils/ease'
+
 export default class Shape {
   constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
     this.x = x
@@ -32,6 +34,8 @@ export default class Shape {
 
     this.loop = false
     this.period = false
+    this.anims = []
+    this.lastAnimIndex = -1
 
     this.autoRemoveWhenStopped = true
 
@@ -43,6 +47,43 @@ export default class Shape {
     this.stopped = false
     this.total = 0
     this.progress = 0
+  }
+
+  addAnim ({ duration, init, update }) {
+    if (this.anims.length <= 0) {
+      this.period = duration
+      this.anims.push({ 
+        end: this.period, 
+        init,
+        update
+      })
+    } else {
+      this.period = this.anims[this.anims.length - 1].end + duration
+      this.anims.push({ 
+        end: this.period, 
+        init,
+        update 
+      })
+    }
+    return this
+  }
+
+  addTween ({ duration, target, easeFunc }) {
+    const origin = {}
+    easeFunc = easeFunc || ease.quadInOut
+    return this.addAnim({
+      duration,
+      init: (elapsed) => {
+        for (const field in target) {
+          origin[field] = this[field]
+        }
+      },
+      update: (progress, elapsed) => {
+        for (const field in target) {
+          this[field] = origin[field] + easeFunc(progress) * (target[field] - origin[field])
+        }
+      }
+    })
   }
 
   // 3D => 2D
@@ -69,12 +110,32 @@ export default class Shape {
         }
       }
 
+      for (let i = 0; i < this.anims.length; i++) {
+        const begin = i <= 0 ? 0 : this.anims[i - 1].end
+        const end = this.anims[i].end
+        const callback = this.anims[i].update
+        const initCallback = this.anims[i].init
+        if (this.total >= begin && this.total < end) {
+          if (this.lastAnimIndex !== i) {
+            if (initCallback) {
+              initCallback(elapsed)
+            }
+            this.lastAnimIndex = i
+          }
+          const animProgress = (this.total - begin) / (end - begin)
+          if (callback) {
+            callback(animProgress, elapsed)
+          }
+          break
+        }
+      }
+
       this.rotationX += this.rotationVelX * elapsed
       this.rotationY += this.rotationVelY * elapsed
       this.rotationZ += this.rotationVelZ * elapsed
       this.finalScale = this.zScale * this.scale
 
-      this.total += elapsed
+      this.total += elapsed      
     }
   }
 
