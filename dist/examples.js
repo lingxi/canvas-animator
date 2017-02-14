@@ -323,12 +323,12 @@ var Shape = function () {
           }
         },
         update: function update(progress, elapsed) {
+          var easedProgress = easeFunc(progress);
           for (var field in target) {
-            var targetValue = typeof target[field] === 'function' ? target[field]() : target[field];
-            _this[field] = origin[field] + easeFunc(progress) * (targetValue - origin[field]);
+            _this[field] = origin[field] + easedProgress * (target[field] - origin[field]);
           }
           if (_update) {
-            _update(progress, elapsed);
+            _update(progress, easedProgress, elapsed);
           }
         }
       });

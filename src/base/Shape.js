@@ -79,12 +79,12 @@ export default class Shape {
         }
       },
       update: (progress, elapsed) => {
+        const easedProgress = easeFunc(progress)
         for (const field in target) {
-          const targetValue = typeof target[field] === 'function' ? target[field]() : target[field]
-          this[field] = origin[field] + easeFunc(progress) * (targetValue - origin[field])
+          this[field] = origin[field] + easedProgress * (target[field] - origin[field])
         }
         if (update) {
-          update(progress, elapsed)
+          update(progress, easedProgress, elapsed)
         }
       }
     })
