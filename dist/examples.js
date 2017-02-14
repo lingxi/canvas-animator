@@ -310,11 +310,11 @@ var Shape = function () {
 
       var duration = _ref2.duration,
           target = _ref2.target,
-          easeFunc = _ref2.easeFunc,
+          ease = _ref2.ease,
           _update = _ref2.update;
 
       var origin = {};
-      easeFunc = easeFunc || __WEBPACK_IMPORTED_MODULE_0__utils_ease__["a" /* default */].quadInOut;
+      ease = ease || __WEBPACK_IMPORTED_MODULE_0__utils_ease__["a" /* default */].quadInOut;
       return this.addAnim({
         duration: duration,
         init: function init() {
@@ -323,7 +323,7 @@ var Shape = function () {
           }
         },
         update: function update(progress, elapsed) {
-          var easedProgress = easeFunc(progress);
+          var easedProgress = ease(progress);
           for (var field in target) {
             _this[field] = origin[field] + easedProgress * (target[field] - origin[field]);
           }

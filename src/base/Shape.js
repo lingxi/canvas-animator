@@ -1,4 +1,4 @@
-import ease from '../utils/ease'
+import _ease from '../utils/ease'
 
 export default class Shape {
   constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
@@ -68,9 +68,9 @@ export default class Shape {
     return this
   }
 
-  addTween ({ duration, target, easeFunc, update }) {
+  addTween ({ duration, target, ease, update }) {
     const origin = {}
-    easeFunc = easeFunc || ease.quadInOut
+    ease = ease || _ease.quadInOut
     return this.addAnim({
       duration,
       init: () => {
@@ -79,7 +79,7 @@ export default class Shape {
         }
       },
       update: (progress, elapsed) => {
-        const easedProgress = easeFunc(progress)
+        const easedProgress = ease(progress)
         for (const field in target) {
           this[field] = origin[field] + easedProgress * (target[field] - origin[field])
         }
