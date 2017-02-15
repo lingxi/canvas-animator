@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("canvas-animator", [], factory);
+		define("canvasAnimator", [], factory);
 	else if(typeof exports === 'object')
-		exports["canvas-animator"] = factory();
+		exports["canvasAnimator"] = factory();
 	else
-		root["canvas-animator"] = factory();
+		root["canvasAnimator"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

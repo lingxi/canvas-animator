@@ -9,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
     filename: process.env.NODE_ENV === 'production' ? '[name].min.js' : '[name].js',
-    library: 'canvas-animator',
+    library: 'canvasAnimator',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
