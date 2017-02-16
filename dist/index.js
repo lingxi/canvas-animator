@@ -164,9 +164,9 @@ var ShapeContainer = function (_Shape) {
               rotatedY = _ShapeContainer$rotat.y,
               rotatedZ = _ShapeContainer$rotat.z;
 
-          entity.worldX = this.worldX + rotatedX * this.scale;
-          entity.worldY = this.worldY + rotatedY * this.scale;
-          entity.worldZ = this.worldZ + rotatedZ * this.scale;
+          entity.worldX = this.worldX + rotatedX * this.finalScale;
+          entity.worldY = this.worldY + rotatedY * this.finalScale;
+          entity.worldZ = this.worldZ + rotatedZ * this.finalScale;
           entity.parentScale = this.finalScale;
           entity.map();
           entity.update(elapsed);
