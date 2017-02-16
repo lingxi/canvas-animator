@@ -48,9 +48,9 @@ export default class ShapeContainer extends Shape {
       const entity = this.list[i]
       if (entity) {
         const { x: rotatedX, y: rotatedY, z: rotatedZ } = ShapeContainer.rotate(entity.x, entity.y, entity.z, this.rotationX, this.rotationY, this.rotationZ)
-        entity.worldX = this.worldX + rotatedX
-        entity.worldY = this.worldY + rotatedY
-        entity.worldZ = this.worldZ + rotatedZ
+        entity.worldX = this.worldX + rotatedX * this.scale
+        entity.worldY = this.worldY + rotatedY * this.scale
+        entity.worldZ = this.worldZ + rotatedZ * this.scale
         entity.map()
         entity.update(elapsed)
         if (entity.stopped && entity.autoRemoveWhenStopped) {

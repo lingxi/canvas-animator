@@ -704,9 +704,9 @@ var ShapeContainer = function (_Shape) {
               rotatedY = _ShapeContainer$rotat.y,
               rotatedZ = _ShapeContainer$rotat.z;
 
-          entity.worldX = this.worldX + rotatedX;
-          entity.worldY = this.worldY + rotatedY;
-          entity.worldZ = this.worldZ + rotatedZ;
+          entity.worldX = this.worldX + rotatedX * this.scale;
+          entity.worldY = this.worldY + rotatedY * this.scale;
+          entity.worldZ = this.worldZ + rotatedZ * this.scale;
           entity.map();
           entity.update(elapsed);
           if (entity.stopped && entity.autoRemoveWhenStopped) {
@@ -4524,7 +4524,9 @@ var examples = [{
 }, {
   canvasId: 'js-canvas-cube',
   animationCreate: function animationCreate(context, canvas) {
-    return new __WEBPACK_IMPORTED_MODULE_4__animations_Cube__["a" /* default */](context, canvas.width / 2, canvas.height / 2);
+    var animation = new __WEBPACK_IMPORTED_MODULE_4__animations_Cube__["a" /* default */](context, canvas.width / 2, canvas.height / 2);
+    animation.scale = 2;
+    return animation;
   }
 }, {
   canvasId: 'js-canvas-image-test',

@@ -38,32 +38,34 @@ const examples = [{
   canvasId: 'js-canvas-bangs',
   animationCreate (context, canvas) {
     return new Bangs(context, canvas.width / 2, canvas.height / 2)
-  },
+  }
 }, {
   canvasId: 'js-canvas-circles',
   animationCreate (context, canvas) {
     return new Circles(context, canvas.width / 2, canvas.height / 2)
-  },
+  }
 }, {
   canvasId: 'js-canvas-cube',
   animationCreate (context, canvas) {
-    return new Cube(context, canvas.width / 2, canvas.height / 2)
-  },
+    const animation = new Cube(context, canvas.width / 2, canvas.height / 2)
+    animation.scale = 2
+    return animation
+  }
 }, {
   canvasId: 'js-canvas-image-test',
   animationCreate (context, canvas) {
     return new ImageTest(context, canvas.width / 2, canvas.height / 2, 0, document.getElementById('test-img'))
-  },
+  }
 }, {
   canvasId: 'js-canvas-squares',
   animationCreate (context, canvas) {
     return new Squares(context, canvas.width / 2, canvas.height / 2)
-  },
+  }
 }, {
   canvasId: 'js-canvas-tween-test',
   animationCreate (context, canvas) {
     return new TweenTest(context, canvas.width / 2, canvas.height / 2)
-  },
+  }
 }]
 
 examples.forEach(({ canvasId, animationCreate, onDone }) => {
