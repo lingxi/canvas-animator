@@ -21,6 +21,7 @@ export default class Shape {
     this.rotationVelZ = 0
 
     this.scale = 1
+    this.parentScale = 1
     this.zScale = 1
     this.finalScale = 1
 
@@ -143,7 +144,7 @@ export default class Shape {
       this.rotationX += this.rotationVelX * elapsed
       this.rotationY += this.rotationVelY * elapsed
       this.rotationZ += this.rotationVelZ * elapsed
-      this.finalScale = this.zScale * this.scale
+      this.finalScale = this.zScale * this.scale * this.parentScale
 
       this.total += elapsed
     }
@@ -154,11 +155,12 @@ export default class Shape {
 
     this.context.translate(this.worldX, this.worldY)
     this.context.rotate(this.rotationZ)
+    this.context.scale(this.finalScale, this.finalScale)
     this.context.globalAlpha = this.alpha
     this.context.filter = this.filter
 
-    this.actualWidth = this.width * this.finalScale
-    this.actualHeight = this.height * this.finalScale
+    this.actualWidth = this.width // * this.finalScale
+    this.actualHeight = this.height // * this.finalScale
 
     if (this._draw) {
       this._draw()

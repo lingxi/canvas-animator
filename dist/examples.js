@@ -250,6 +250,7 @@ var Shape = function () {
     this.rotationVelZ = 0;
 
     this.scale = 1;
+    this.parentScale = 1;
     this.zScale = 1;
     this.finalScale = 1;
 
@@ -391,7 +392,7 @@ var Shape = function () {
         this.rotationX += this.rotationVelX * elapsed;
         this.rotationY += this.rotationVelY * elapsed;
         this.rotationZ += this.rotationVelZ * elapsed;
-        this.finalScale = this.zScale * this.scale;
+        this.finalScale = this.zScale * this.scale * this.parentScale;
 
         this.total += elapsed;
       }
@@ -403,11 +404,12 @@ var Shape = function () {
 
       this.context.translate(this.worldX, this.worldY);
       this.context.rotate(this.rotationZ);
+      this.context.scale(this.finalScale, this.finalScale);
       this.context.globalAlpha = this.alpha;
       this.context.filter = this.filter;
 
-      this.actualWidth = this.width * this.finalScale;
-      this.actualHeight = this.height * this.finalScale;
+      this.actualWidth = this.width; // * this.finalScale
+      this.actualHeight = this.height; // * this.finalScale
 
       if (this._draw) {
         this._draw();
@@ -707,6 +709,7 @@ var ShapeContainer = function (_Shape) {
           entity.worldX = this.worldX + rotatedX * this.scale;
           entity.worldY = this.worldY + rotatedY * this.scale;
           entity.worldZ = this.worldZ + rotatedZ * this.scale;
+          entity.parentScale = this.finalScale;
           entity.map();
           entity.update(elapsed);
           if (entity.stopped && entity.autoRemoveWhenStopped) {
@@ -1919,7 +1922,7 @@ var Circle = function (_Shape) {
     key: '_draw',
     value: function _draw() {
       this.context.beginPath();
-      this.context.arc(0, 0, this.r * this.finalScale, 0, 2 * Math.PI);
+      this.context.arc(0, 0, this.r, 0, 2 * Math.PI);
       this.context.fillStyle = this.color;
       this.context.fill();
     }
@@ -1980,8 +1983,8 @@ var Star = function (_Shape) {
     value: function _draw() {
       this.context.miterLimit = this.R;
       this.context.beginPath();
-      var R = this.R * this.finalScale;
-      var r = this.r * this.finalScale;
+      var R = this.R;
+      var r = this.r;
       var zero = 0;
       this.context.moveTo(Math.cos(zero) * R, Math.sin(zero) * R);
       var per = Math.PI * 2 / (this.angleNum * 2);
@@ -2254,8 +2257,8 @@ var Ring = function (_Shape) {
     key: '_draw',
     value: function _draw() {
       this.context.beginPath();
-      var R = this.R * this.finalScale;
-      var r = this.r * this.finalScale;
+      var R = this.R;
+      var r = this.r;
 
       // this.context.arc(0, 0, R, 0, 2 * Math.PI)
       // this.context.fillStyle = this.fillStyle

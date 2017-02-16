@@ -51,6 +51,7 @@ export default class ShapeContainer extends Shape {
         entity.worldX = this.worldX + rotatedX * this.scale
         entity.worldY = this.worldY + rotatedY * this.scale
         entity.worldZ = this.worldZ + rotatedZ * this.scale
+        entity.parentScale = this.finalScale
         entity.map()
         entity.update(elapsed)
         if (entity.stopped && entity.autoRemoveWhenStopped) {

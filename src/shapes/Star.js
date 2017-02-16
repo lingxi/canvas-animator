@@ -14,8 +14,8 @@ export default class Star extends Shape {
   _draw () {
     this.context.miterLimit = this.R
     this.context.beginPath()
-    const R = this.R * this.finalScale
-    const r = this.r * this.finalScale
+    const R = this.R
+    const r = this.r
     const zero = 0
     this.context.moveTo(Math.cos(zero) * R, Math.sin(zero) * R)
     const per = Math.PI * 2 / (this.angleNum * 2)

@@ -10,8 +10,8 @@ export default class Ring extends Shape {
 
   _draw () {
     this.context.beginPath()
-    const R = this.R * this.finalScale
-    const r = this.r * this.finalScale
+    const R = this.R
+    const r = this.r
 
     // this.context.arc(0, 0, R, 0, 2 * Math.PI)
     // this.context.fillStyle = this.fillStyle
