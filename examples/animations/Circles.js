@@ -3,8 +3,8 @@ import { sinInOut, back } from '../../src/utils/filters'
 import ShapeContainer from '../../src/base/ShapeContainer'
 
 class WavedCircle extends Circle {
-  constructor (context = null, x = 0, y = 0, z = 0, r = 100, color = '#000', distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, r, color, distance)
+  constructor (context = null, x = 0, y = 0, r = 100, color = '#000') {
+    super(context, x, y, r, color)
     this.totalTime = 0
     this.period = 2
     this.loop = true
@@ -21,8 +21,8 @@ class WavedCircle extends Circle {
 }
 
 export default class Circles extends ShapeContainer {
-  constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0) {
+    super(context, x, y)
     const colors = [
       '#00b0df',
       '#00e7c3',
@@ -38,11 +38,11 @@ export default class Circles extends ShapeContainer {
       const rad = Math.PI * 2 * i / colors.length
       const x = R * Math.cos(rad)
       const y = R * Math.sin(rad)
-      const circle = new WavedCircle(this.context, x, y, 0, r, color)
+      const circle = new WavedCircle(this.context, x, y, r, color)
       circle.deltaTime = i / colors.length * circle.period
       this.add(circle)
     })
 
-    this.rotationVelZ = Math.PI * 0.2
+    this.rotationVel = Math.PI * 0.2
   }
 }

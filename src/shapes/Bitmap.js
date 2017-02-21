@@ -1,8 +1,8 @@
 import Shape from '../base/Shape'
 
 export default class Bitmap extends Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, w = 100, h = 100, img, srcRect = null, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0, w = 100, h = 100, img, srcRect = null) {
+    super(context, x, y)
     this.width = w
     this.height = h
     this.image = img

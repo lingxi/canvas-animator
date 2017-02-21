@@ -3,14 +3,14 @@ import ease from '../../src/utils/ease'
 import ShapeContainer from '../../src/base/ShapeContainer'
 
 export default class TweenTest extends ShapeContainer {
-  constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0) {
+    super(context, x, y)
     this.len = 500
 
     const R = 75
     const r = 25
     const color = '#000'
-    this.star = new Star(this.context, -this.len / 2, 0, 0, R, r, 5, color)
+    this.star = new Star(this.context, -this.len / 2, 0, R, r, 5, color)
     this.add(this.star)
 
     const n = 3

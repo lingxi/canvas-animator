@@ -1,8 +1,8 @@
 import Shape from '../base/Shape'
 
 export default class Star extends Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, R = 100, r = 50, angleNum = 5, strokeStyle = '#000', fillStyle = '#fff', lineWidth = 2, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0, R = 100, r = 50, angleNum = 5, strokeStyle = '#000', fillStyle = '#fff', lineWidth = 2) {
+    super(context, x, y)
     this.R = R
     this.r = r
     this.angleNum = angleNum

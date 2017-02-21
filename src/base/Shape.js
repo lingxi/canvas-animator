@@ -1,29 +1,15 @@
 import _ease from '../utils/ease'
 
 export default class Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
+  constructor (context = null, x = 0, y = 0) {
+    this.context = context
     this.x = x
     this.y = y
-    this.z = z
 
-    this.context = context
-    this.distance = distance
+    this.rotation = 0
+    this.rotationVel = 0
 
-    this.worldX = this.x
-    this.worldY = this.y
-    this.worldZ = this.z
-
-    this.rotationX = 0
-    this.rotationY = 0
-    this.rotationZ = 0
-    this.rotationVelX = 0
-    this.rotationVelY = 0
-    this.rotationVelZ = 0
-
-    this.scale = 1
-    this.parentScale = 1
-    this.zScale = 1
-    this.finalScale = 1
+    this.scale = { x: 1, y: 1 }
 
     this.alpha = 1
     this.filter = 'none'
@@ -41,7 +27,6 @@ export default class Shape {
     this.autoRemoveWhenStopped = true
 
     this.reset()
-    this.map()
   }
 
   reset () {
@@ -91,18 +76,10 @@ export default class Shape {
     })
   }
 
-  // 3D => 2D
-  map () {
-    this.zScale = (this.worldZ + this.distance) / this.distance
-    this.worldX *= this.zScale
-    this.worldY *= this.zScale
-  }
-
   update (elapsed) {
     if (!this.stopped) {
       if (this.period) {
         this.progress = this.total / this.period
-        // console.log(elapsed, this.progress, this.total, this.period)
         if (this.progress >= 1) {
           if (!this.loop) {
             this.stopped = true
@@ -141,31 +118,40 @@ export default class Shape {
         }
       }
 
-      this.rotationX += this.rotationVelX * elapsed
-      this.rotationY += this.rotationVelY * elapsed
-      this.rotationZ += this.rotationVelZ * elapsed
-      this.finalScale = this.zScale * this.scale * this.parentScale
+      this.rotation += this.rotationVel * elapsed
 
       this.total += elapsed
     }
   }
 
-  draw () {
+  _beforeDraw () {
     this.context.save()
 
-    this.context.translate(this.worldX, this.worldY)
-    this.context.rotate(this.rotationZ)
-    this.context.scale(this.finalScale, this.finalScale)
+    this.context.translate(this.x, this.y)
+    this.context.rotate(this.rotation)
+    if (typeof this.scale === 'number') {
+      this.context.scale(this.scale, this.scale)
+    } else {
+      this.context.scale(this.scale.x, this.scale.y)
+    }
     this.context.globalAlpha = this.alpha
     this.context.filter = this.filter
 
     this.actualWidth = this.width // * this.finalScale
     this.actualHeight = this.height // * this.finalScale
+  }
 
-    if (this._draw) {
-      this._draw()
-    }
+  _draw () {
+    // override by child class
+  }
 
+  _afterDraw () {
     this.context.restore()
+  }
+
+  draw () {
+    this._beforeDraw()
+    this._draw()
+    this._afterDraw()
   }
 }

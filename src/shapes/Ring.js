@@ -1,8 +1,8 @@
 import Shape from '../base/Shape'
 
 export default class Ring extends Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, R = 100, r = 50, fillStyle = '#fff', distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0, R = 100, r = 50, fillStyle = '#fff') {
+    super(context, x, y)
     this.R = R
     this.r = r
     this.fillStyle = fillStyle

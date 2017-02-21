@@ -19,7 +19,7 @@ export default class Bang extends ShapeContainer {
   reset () {
     super.reset()
 
-    this.ring = new Ring(this.context, 0, 0, 0, 0, 0, ringColor)
+    this.ring = new Ring(this.context, 0, 0, 0, 0, ringColor)
     this.add(this.ring)
 
     this.stars = []
@@ -32,10 +32,10 @@ export default class Bang extends ShapeContainer {
     for (let i = 0; i < countStar; i++) {
       const r = 2 + Math.random() * rRange
       const R = r + Math.random() * RRange
-      const star = new Star(this.context, 0, 0, 0, R, r, 5, starStrokeStyle, starFillStyle, lineWidth)
+      const star = new Star(this.context, 0, 0, R, r, 5, starStrokeStyle, starFillStyle, lineWidth)
       star.dir = i / countStar * Math.PI * 2
       star.len = this.len * Math.random()
-      star.rotationVelZ = (Math.random() - 0.5) * 2 * Math.PI * 3
+      star.rotationVel = (Math.random() - 0.5) * 2 * Math.PI * 3
       this.stars.push(star)
       this.add(star)
     }

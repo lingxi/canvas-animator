@@ -1,11 +1,8 @@
 import Shape from './Shape'
 
 export default class ShapeContainer extends Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
-    this.rotationX = 0
-    this.rotationY = 0
-    this.rotationZ = 0
+  constructor (context = null, x = 0, y = 0) {
+    super(context, x, y)
     this.list = []
   }
 
@@ -47,12 +44,6 @@ export default class ShapeContainer extends Shape {
     for (let i = 0; i < this.list.length; i++) {
       const entity = this.list[i]
       if (entity) {
-        const { x: rotatedX, y: rotatedY, z: rotatedZ } = ShapeContainer.rotate(entity.x, entity.y, entity.z, this.rotationX, this.rotationY, this.rotationZ)
-        entity.worldX = this.worldX + rotatedX * this.finalScale
-        entity.worldY = this.worldY + rotatedY * this.finalScale
-        entity.worldZ = this.worldZ + rotatedZ * this.finalScale
-        entity.parentScale = this.finalScale
-        entity.map()
         entity.update(elapsed)
         if (entity.stopped && entity.autoRemoveWhenStopped) {
           autoRemoves.push(i)
@@ -65,15 +56,18 @@ export default class ShapeContainer extends Shape {
   }
 
   draw () {
+    this._beforeDraw()
     for (let i = 0; i < this.list.length; i++) {
       const entity = this.list[i]
       if (entity) {
         entity.draw()
       }
     }
+    this._afterDraw()
   }
 }
 
+/*
 ShapeContainer.rotateX = (x, y, z, rotation) => {
   const _y = y * Math.cos(rotation) - z * Math.sin(rotation)
   const _z = y * Math.sin(rotation) + z * Math.cos(rotation)
@@ -96,3 +90,4 @@ ShapeContainer.rotate = (x, y, z, rotationX, rotationY, rotationZ) => {
   r = ShapeContainer.rotateZ(r.x, r.y, r.z, rotationZ)
   return r
 }
+*/

@@ -1,8 +1,8 @@
 import Shape from '../base/Shape'
 
 export default class Rect extends Shape {
-  constructor (context = null, x = 0, y = 0, z = 0, w = 100, h = 100, color = '#000', distance = Number.MAX_SAFE_INTEGER) {
-    super(context, x, y, z, distance)
+  constructor (context = null, x = 0, y = 0, w = 100, h = 100, color = '#000') {
+    super(context, x, y)
     this.width = w
     this.height = h
     this.color = color
