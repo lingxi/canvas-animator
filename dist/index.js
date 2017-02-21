@@ -73,12 +73,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 318);
+/******/ 	return __webpack_require__(__webpack_require__.s = 319);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 22:
+/***/ 19:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -102,16 +102,11 @@ var ShapeContainer = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var distance = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : Number.MAX_SAFE_INTEGER;
 
     _classCallCheck(this, ShapeContainer);
 
-    var _this = _possibleConstructorReturn(this, (ShapeContainer.__proto__ || Object.getPrototypeOf(ShapeContainer)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (ShapeContainer.__proto__ || Object.getPrototypeOf(ShapeContainer)).call(this, context, x, y));
 
-    _this.rotationX = 0;
-    _this.rotationY = 0;
-    _this.rotationZ = 0;
     _this.list = [];
     return _this;
   }
@@ -159,16 +154,6 @@ var ShapeContainer = function (_Shape) {
       for (var i = 0; i < this.list.length; i++) {
         var entity = this.list[i];
         if (entity) {
-          var _ShapeContainer$rotat = ShapeContainer.rotate(entity.x, entity.y, entity.z, this.rotationX, this.rotationY, this.rotationZ),
-              rotatedX = _ShapeContainer$rotat.x,
-              rotatedY = _ShapeContainer$rotat.y,
-              rotatedZ = _ShapeContainer$rotat.z;
-
-          entity.worldX = this.worldX + rotatedX * this.finalScale;
-          entity.worldY = this.worldY + rotatedY * this.finalScale;
-          entity.worldZ = this.worldZ + rotatedZ * this.finalScale;
-          entity.parentScale = this.finalScale;
-          entity.map();
           entity.update(elapsed);
           if (entity.stopped && entity.autoRemoveWhenStopped) {
             autoRemoves.push(i);
@@ -182,47 +167,51 @@ var ShapeContainer = function (_Shape) {
   }, {
     key: 'draw',
     value: function draw() {
+      this._beforeDraw();
       for (var i = 0; i < this.list.length; i++) {
         var entity = this.list[i];
         if (entity) {
           entity.draw();
         }
       }
+      this._afterDraw();
     }
   }]);
 
   return ShapeContainer;
 }(__WEBPACK_IMPORTED_MODULE_0__Shape__["a" /* default */]);
 
+/*
+ShapeContainer.rotateX = (x, y, z, rotation) => {
+  const _y = y * Math.cos(rotation) - z * Math.sin(rotation)
+  const _z = y * Math.sin(rotation) + z * Math.cos(rotation)
+  return { x, y: _y, z: _z }
+}
+ShapeContainer.rotateY = (x, y, z, rotation) => {
+  const _z = z * Math.cos(rotation) - x * Math.sin(rotation)
+  const _x = z * Math.sin(rotation) + x * Math.cos(rotation)
+  return { x: _x, y, z: _z }
+}
+ShapeContainer.rotateZ = (x, y, z, rotation) => {
+  const _x = x * Math.cos(rotation) - y * Math.sin(rotation)
+  const _y = x * Math.sin(rotation) + y * Math.cos(rotation)
+  return { x: _x, y: _y, z }
+}
+ShapeContainer.rotate = (x, y, z, rotationX, rotationY, rotationZ) => {
+  let r = { x, y, z }
+  r = ShapeContainer.rotateX(r.x, r.y, r.z, rotationX)
+  r = ShapeContainer.rotateY(r.x, r.y, r.z, rotationY)
+  r = ShapeContainer.rotateZ(r.x, r.y, r.z, rotationZ)
+  return r
+}
+*/
+
+
 /* harmony default export */ __webpack_exports__["a"] = ShapeContainer;
-
-
-ShapeContainer.rotateX = function (x, y, z, rotation) {
-  var _y = y * Math.cos(rotation) - z * Math.sin(rotation);
-  var _z = y * Math.sin(rotation) + z * Math.cos(rotation);
-  return { x: x, y: _y, z: _z };
-};
-ShapeContainer.rotateY = function (x, y, z, rotation) {
-  var _z = z * Math.cos(rotation) - x * Math.sin(rotation);
-  var _x = z * Math.sin(rotation) + x * Math.cos(rotation);
-  return { x: _x, y: y, z: _z };
-};
-ShapeContainer.rotateZ = function (x, y, z, rotation) {
-  var _x = x * Math.cos(rotation) - y * Math.sin(rotation);
-  var _y = x * Math.sin(rotation) + y * Math.cos(rotation);
-  return { x: _x, y: _y, z: z };
-};
-ShapeContainer.rotate = function (x, y, z, rotationX, rotationY, rotationZ) {
-  var r = { x: x, y: y, z: z };
-  r = ShapeContainer.rotateX(r.x, r.y, r.z, rotationX);
-  r = ShapeContainer.rotateY(r.x, r.y, r.z, rotationY);
-  r = ShapeContainer.rotateZ(r.x, r.y, r.z, rotationZ);
-  return r;
-};
 
 /***/ }),
 
-/***/ 318:
+/***/ 319:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(69);
@@ -403,17 +392,15 @@ var Circle = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var color = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
-    var distance = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : Number.MAX_SAFE_INTEGER;
+    var r = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var fillStyle = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '#000';
 
     _classCallCheck(this, Circle);
 
-    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y));
 
     _this.r = r;
-    _this.color = color;
+    _this.fillStyle = fillStyle;
     return _this;
   }
 
@@ -422,7 +409,6 @@ var Circle = function (_Shape) {
     value: function _draw() {
       this.context.beginPath();
       this.context.arc(0, 0, this.r, 0, 2 * Math.PI);
-      this.context.fillStyle = this.color;
       this.context.fill();
     }
   }]);
@@ -449,6 +435,56 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+var Rect = function (_Shape) {
+  _inherits(Rect, _Shape);
+
+  function Rect() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var width = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var height = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var fillStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
+
+    _classCallCheck(this, Rect);
+
+    var _this = _possibleConstructorReturn(this, (Rect.__proto__ || Object.getPrototypeOf(Rect)).call(this, context, x, y));
+
+    _this.width = width;
+    _this.height = height;
+    _this.fillStyle = fillStyle;
+    return _this;
+  }
+
+  _createClass(Rect, [{
+    key: '_draw',
+    value: function _draw() {
+      this.context.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+    }
+  }]);
+
+  return Rect;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Rect;
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
 var Star = function (_Shape) {
   _inherits(Star, _Shape);
 
@@ -456,18 +492,16 @@ var Star = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var R = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var r = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 50;
-    var angleNum = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 5;
-    var strokeStyle = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : '#000';
-    var fillStyle = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : '#fff';
-    var lineWidth = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : 2;
-    var distance = arguments.length > 10 && arguments[10] !== undefined ? arguments[10] : Number.MAX_SAFE_INTEGER;
+    var R = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 50;
+    var angleNum = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 5;
+    var strokeStyle = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
+    var fillStyle = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : '#fff';
+    var lineWidth = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 2;
 
     _classCallCheck(this, Star);
 
-    var _this = _possibleConstructorReturn(this, (Star.__proto__ || Object.getPrototypeOf(Star)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (Star.__proto__ || Object.getPrototypeOf(Star)).call(this, context, x, y));
 
     _this.R = R;
     _this.r = r;
@@ -495,10 +529,7 @@ var Star = function (_Shape) {
         this.context.lineTo(Math.cos(a) * R, Math.sin(a) * R);
       }
       this.context.closePath();
-      this.context.fillStyle = this.fillStyle;
       this.context.fill();
-      this.context.lineWidth = this.lineWidth;
-      this.context.strokeStyle = this.strokeStyle;
       this.context.stroke();
     }
   }]);
@@ -510,7 +541,7 @@ var Star = function (_Shape) {
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -532,31 +563,29 @@ var Bitmap = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
-    var img = arguments[6];
-    var srcRect = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
-    var distance = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : Number.MAX_SAFE_INTEGER;
+    var width = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var height = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var image = arguments[5];
+    var sourceRect = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
 
     _classCallCheck(this, Bitmap);
 
-    var _this = _possibleConstructorReturn(this, (Bitmap.__proto__ || Object.getPrototypeOf(Bitmap)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (Bitmap.__proto__ || Object.getPrototypeOf(Bitmap)).call(this, context, x, y));
 
-    _this.width = w;
-    _this.height = h;
-    _this.image = img;
-    _this.srcRect = srcRect; // { x, y, width, height }
+    _this.width = width;
+    _this.height = height;
+    _this.image = image;
+    _this.sourceRect = sourceRect; // { x, y, width, height }
     return _this;
   }
 
   _createClass(Bitmap, [{
     key: '_draw',
     value: function _draw() {
-      if (this.srcRect) {
-        this.context.drawImage(this.image, this.srcRect.x, this.srcRect.y, this.srcRect.width, this.srcRect.height, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight);
+      if (this.sourceRect) {
+        this.context.drawImage(this.image, this.sourceRect.x, this.sourceRect.y, this.sourceRect.width, this.sourceRect.height, -this.width / 2, -this.height / 2, this.width, this.height);
       } else {
-        this.context.drawImage(this.image, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight);
+        this.context.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
       }
     }
   }]);
@@ -568,7 +597,7 @@ var Bitmap = function (_Shape) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -590,20 +619,18 @@ var Pattern = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
-    var img = arguments[6];
-    var repeat = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 'repeat';
-    var distance = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : Number.MAX_SAFE_INTEGER;
+    var width = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var height = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
+    var image = arguments[5];
+    var repeat = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 'repeat';
 
     _classCallCheck(this, Pattern);
 
-    var _this = _possibleConstructorReturn(this, (Pattern.__proto__ || Object.getPrototypeOf(Pattern)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (Pattern.__proto__ || Object.getPrototypeOf(Pattern)).call(this, context, x, y));
 
-    _this.width = w;
-    _this.height = h;
-    _this.pattern = context.createPattern(img, repeat);
+    _this.width = width;
+    _this.height = height;
+    _this.pattern = context.createPattern(image, repeat);
     return _this;
   }
 
@@ -611,7 +638,7 @@ var Pattern = function (_Shape) {
     key: '_draw',
     value: function _draw() {
       this.context.fillStyle = this.pattern;
-      this.context.fillRect(-this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight);
+      this.context.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
     }
   }]);
 
@@ -619,59 +646,6 @@ var Pattern = function (_Shape) {
 }(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = Pattern;
-
-/***/ }),
-
-/***/ 55:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Rect = function (_Shape) {
-  _inherits(Rect, _Shape);
-
-  function Rect() {
-    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var w = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 100;
-    var color = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
-    var distance = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : Number.MAX_SAFE_INTEGER;
-
-    _classCallCheck(this, Rect);
-
-    var _this = _possibleConstructorReturn(this, (Rect.__proto__ || Object.getPrototypeOf(Rect)).call(this, context, x, y, z, distance));
-
-    _this.width = w;
-    _this.height = h;
-    _this.color = color;
-    return _this;
-  }
-
-  _createClass(Rect, [{
-    key: '_draw',
-    value: function _draw() {
-      this.context.fillStyle = this.color;
-      this.context.fillRect(-this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight);
-    }
-  }]);
-
-  return Rect;
-}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = Rect;
 
 /***/ }),
 
@@ -697,15 +671,13 @@ var Ring = function (_Shape) {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var R = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
-    var r = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 50;
-    var fillStyle = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#fff';
-    var distance = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : Number.MAX_SAFE_INTEGER;
+    var R = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 50;
+    var fillStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#fff';
 
     _classCallCheck(this, Ring);
 
-    var _this = _possibleConstructorReturn(this, (Ring.__proto__ || Object.getPrototypeOf(Ring)).call(this, context, x, y, z, distance));
+    var _this = _possibleConstructorReturn(this, (Ring.__proto__ || Object.getPrototypeOf(Ring)).call(this, context, x, y));
 
     _this.R = R;
     _this.r = r;
@@ -737,7 +709,6 @@ var Ring = function (_Shape) {
       this.context.lineTo(R, 0);
       this.context.closePath();
 
-      this.context.fillStyle = this.fillStyle;
       this.context.fill();
     }
   }]);
@@ -777,13 +748,13 @@ var back = function back(progress) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_ease__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_filters__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Animator__ = __webpack_require__(70);
@@ -934,41 +905,41 @@ var Shape = function () {
     var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-    var distance = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : Number.MAX_SAFE_INTEGER;
 
     _classCallCheck(this, Shape);
 
+    this.context = context;
     this.x = x;
     this.y = y;
-    this.z = z;
 
-    this.context = context;
-    this.distance = distance;
+    this.rotation = 0;
+    this.rotationVel = 0;
 
-    this.worldX = this.x;
-    this.worldY = this.y;
-    this.worldZ = this.z;
-
-    this.rotationX = 0;
-    this.rotationY = 0;
-    this.rotationZ = 0;
-    this.rotationVelX = 0;
-    this.rotationVelY = 0;
-    this.rotationVelZ = 0;
-
-    this.scale = 1;
-    this.parentScale = 1;
-    this.zScale = 1;
-    this.finalScale = 1;
+    this.scale = { x: 1, y: 1 };
 
     this.alpha = 1;
+    this.compositeOperation = 'source-over';
+
+    this.lineWidth = 1.0;
+    this.lineCap = 'butt';
+    this.lineJoin = 'miter';
+    this.miterLimit = 10;
+    this.lineDashOffset = 0.0;
+    this.font = '10px sans-serif';
+    this.textAlign = 'start';
+    this.textBaseline = 'alphabetic';
+    this.direction = 'inherit';
+    this.fillStyle = '#000';
+    this.strokeStyle = '#000';
+    this.shadowBlur = 0;
+    this.shadowColor = 'fully-transparent black';
+    this.shadowOffsetX = 0;
+    this.shadowOffsetY = 0;
+
     this.filter = 'none';
 
     this.width = Number.NaN;
     this.height = Number.NaN;
-    this.actualWidth = Number.NaN;
-    this.actualHeight = Number.NaN;
 
     this.loop = false;
     this.period = false;
@@ -978,7 +949,6 @@ var Shape = function () {
     this.autoRemoveWhenStopped = true;
 
     this.reset();
-    this.map();
   }
 
   _createClass(Shape, [{
@@ -1042,23 +1012,12 @@ var Shape = function () {
         }
       });
     }
-
-    // 3D => 2D
-
-  }, {
-    key: 'map',
-    value: function map() {
-      this.zScale = (this.worldZ + this.distance) / this.distance;
-      this.worldX *= this.zScale;
-      this.worldY *= this.zScale;
-    }
   }, {
     key: 'update',
     value: function update(elapsed) {
       if (!this.stopped) {
         if (this.period) {
           this.progress = this.total / this.period;
-          // console.log(elapsed, this.progress, this.total, this.period)
           if (this.progress >= 1) {
             if (!this.loop) {
               this.stopped = true;
@@ -1097,33 +1056,61 @@ var Shape = function () {
           }
         }
 
-        this.rotationX += this.rotationVelX * elapsed;
-        this.rotationY += this.rotationVelY * elapsed;
-        this.rotationZ += this.rotationVelZ * elapsed;
-        this.finalScale = this.zScale * this.scale * this.parentScale;
+        this.rotation += this.rotationVel * elapsed;
 
         this.total += elapsed;
       }
     }
   }, {
-    key: 'draw',
-    value: function draw() {
+    key: '_beforeDraw',
+    value: function _beforeDraw() {
       this.context.save();
 
-      this.context.translate(this.worldX, this.worldY);
-      this.context.rotate(this.rotationZ);
-      this.context.scale(this.finalScale, this.finalScale);
-      this.context.globalAlpha = this.alpha;
-      this.context.filter = this.filter;
-
-      this.actualWidth = this.width; // * this.finalScale
-      this.actualHeight = this.height; // * this.finalScale
-
-      if (this._draw) {
-        this._draw();
+      this.context.translate(this.x, this.y);
+      this.context.rotate(this.rotation);
+      if (typeof this.scale === 'number') {
+        this.context.scale(this.scale, this.scale);
+      } else {
+        this.context.scale(this.scale.x, this.scale.y);
       }
 
+      this.context.globalAlpha = this.alpha;
+      this.context.globalCompositeOperation = this.compositeOperation;
+
+      this.context.lineWidth = this.lineWidth;
+      this.context.lineCap = this.lineCap;
+      this.context.lineJoin = this.lineJoin;
+      this.context.miterLimit = this.miterLimit;
+      this.context.lineDashOffset = this.lineDashOffset;
+      this.context.font = this.font;
+      this.context.textAlign = this.textAlign;
+      this.context.textBaseline = this.textBaseline;
+      this.context.direction = this.direction;
+      this.context.fillStyle = this.fillStyle;
+      this.context.strokeStyle = this.strokeStyle;
+      this.context.shadowBlur = this.shadowBlur;
+      this.context.shadowColor = this.shadowColor;
+      this.context.shadowOffsetX = this.shadowOffsetX;
+      this.context.shadowOffsetY = this.shadowOffsetY;
+
+      this.context.filter = this.filter;
+    }
+  }, {
+    key: '_draw',
+    value: function _draw() {
+      // override by child class
+    }
+  }, {
+    key: '_afterDraw',
+    value: function _afterDraw() {
       this.context.restore();
+    }
+  }, {
+    key: 'draw',
+    value: function draw() {
+      this._beforeDraw();
+      this._draw();
+      this._afterDraw();
     }
   }]);
 
