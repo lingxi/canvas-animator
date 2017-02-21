@@ -12,6 +12,24 @@ export default class Shape {
     this.scale = { x: 1, y: 1 }
 
     this.alpha = 1
+    this.compositeOperation = 'source-over'
+
+    this.lineWidth = 1.0
+    this.lineCap = 'butt'
+    this.lineJoin = 'miter'
+    this.miterLimit = 10
+    this.lineDashOffset = 0.0
+    this.font = '10px sans-serif'
+    this.textAlign = 'start'
+    this.textBaseline = 'alphabetic'
+    this.direction = 'inherit'
+    this.fillStyle = '#000'
+    this.strokeStyle = '#000'
+    this.shadowBlur = 0
+    this.shadowColor = 'fully-transparent black'
+    this.shadowOffsetX = 0
+    this.shadowOffsetY = 0
+
     this.filter = 'none'
 
     this.width = Number.NaN
@@ -134,7 +152,26 @@ export default class Shape {
     } else {
       this.context.scale(this.scale.x, this.scale.y)
     }
+
     this.context.globalAlpha = this.alpha
+    this.context.globalCompositeOperation = this.compositeOperation
+
+    this.context.lineWidth = this.lineWidth
+    this.context.lineCap = this.lineCap
+    this.context.lineJoin = this.lineJoin
+    this.context.miterLimit = this.miterLimit
+    this.context.lineDashOffset = this.lineDashOffset
+    this.context.font = this.font
+    this.context.textAlign = this.textAlign
+    this.context.textBaseline = this.textBaseline
+    this.context.direction = this.direction
+    this.context.fillStyle = this.fillStyle
+    this.context.strokeStyle = this.strokeStyle
+    this.context.shadowBlur = this.shadowBlur
+    this.context.shadowColor = this.shadowColor
+    this.context.shadowOffsetX = this.shadowOffsetX
+    this.context.shadowOffsetY = this.shadowOffsetY
+
     this.context.filter = this.filter
 
     this.actualWidth = this.width // * this.finalScale

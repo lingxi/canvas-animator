@@ -30,7 +30,6 @@ export default class Ring extends Shape {
     this.context.lineTo(R, 0)
     this.context.closePath()
 
-    this.context.fillStyle = this.fillStyle
     this.context.fill()
   }
 }

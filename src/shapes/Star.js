@@ -26,10 +26,7 @@ export default class Star extends Shape {
       this.context.lineTo(Math.cos(a) * R, Math.sin(a) * R)
     }
     this.context.closePath()
-    this.context.fillStyle = this.fillStyle
     this.context.fill()
-    this.context.lineWidth = this.lineWidth
-    this.context.strokeStyle = this.strokeStyle
     this.context.stroke()
   }
 }

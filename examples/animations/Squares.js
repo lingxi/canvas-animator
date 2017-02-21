@@ -16,7 +16,12 @@ export default class Squares extends ShapeContainer {
       const n = colors.length
       const rectSize = size / n * (n - i)
       const rect = new Rect(context, 0, 0, rectSize, rectSize, color)
-      rect.rotationVel = Math.PI * (n - i) * 0.1
+      // rect.rotationVel = Math.PI * (n - i) * 0.1
+      rect.loop = true
+      rect.addTween({
+        duration: 2,
+        target: { rotation: Math.PI / 2 * (i + 1) }
+      })
       this.add(rect)
     })
   }

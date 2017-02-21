@@ -10,7 +10,6 @@ export default class TweenTest extends ShapeContainer {
     const bitmap = new Bitmap(context, 0, 0, 248, 36, img)
     const bitmapAlpha = new Bitmap(context, 0, 100, 128, 18, img, { x: 0, y: 0, width: 128, height: 18 })
     bitmapAlpha.alpha = 0.5
-    bitmapAlpha.filter = 'blur(2px)'
     this.add(pattern)
     this.add(bitmap)
     this.add(bitmapAlpha)

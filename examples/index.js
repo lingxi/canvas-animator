@@ -44,13 +44,6 @@ const examples = [{
   animationCreate (context, canvas) {
     return new Circles(context, canvas.width / 2, canvas.height / 2)
   }
-// }, {
-//   canvasId: 'js-canvas-cube',
-//   animationCreate (context, canvas) {
-//     const animation = new Cube(context, canvas.width / 2, canvas.height / 2)
-//     animation.scale = 2
-//     return animation
-//   }
 }, {
   canvasId: 'js-canvas-image-test',
   animationCreate (context, canvas) {

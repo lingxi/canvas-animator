@@ -1,11 +1,11 @@
 import Shape from '../base/Shape'
 
 export default class Pattern extends Shape {
-  constructor (context = null, x = 0, y = 0, w = 100, h = 100, img, repeat = 'repeat') {
+  constructor (context = null, x = 0, y = 0, width = 100, height = 100, image, repeat = 'repeat') {
     super(context, x, y)
-    this.width = w
-    this.height = h
-    this.pattern = context.createPattern(img, repeat)
+    this.width = width
+    this.height = height
+    this.pattern = context.createPattern(image, repeat)
   }
 
   _draw () {
