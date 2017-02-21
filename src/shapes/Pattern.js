@@ -10,6 +10,6 @@ export default class Pattern extends Shape {
 
   _draw () {
     this.context.fillStyle = this.pattern
-    this.context.fillRect(-this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
+    this.context.fillRect(-this.width / 2, -this.height / 2, this.width, this.height)
   }
 }

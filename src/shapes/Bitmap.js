@@ -11,9 +11,9 @@ export default class Bitmap extends Shape {
 
   _draw () {
     if (this.sourceRect) {
-      this.context.drawImage(this.image, this.sourceRect.x, this.sourceRect.y, this.sourceRect.width, this.sourceRect.height, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
+      this.context.drawImage(this.image, this.sourceRect.x, this.sourceRect.y, this.sourceRect.width, this.sourceRect.height, -this.width / 2, -this.height / 2, this.width, this.height)
     } else {
-      this.context.drawImage(this.image, -this.actualWidth / 2, -this.actualHeight / 2, this.actualWidth, this.actualHeight)
+      this.context.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height)
     }
   }
 }

@@ -34,8 +34,6 @@ export default class Shape {
 
     this.width = Number.NaN
     this.height = Number.NaN
-    this.actualWidth = Number.NaN
-    this.actualHeight = Number.NaN
 
     this.loop = false
     this.period = false
@@ -173,9 +171,6 @@ export default class Shape {
     this.context.shadowOffsetY = this.shadowOffsetY
 
     this.context.filter = this.filter
-
-    this.actualWidth = this.width // * this.finalScale
-    this.actualHeight = this.height // * this.finalScale
   }
 
   _draw () {

@@ -18,6 +18,3 @@ const animation = new Animation(context, canvas.width / 2, canvas.height / 2)
 const animator = new Animator(animation)
 animator.play()
 ```
-
-### TODOs
-[ ] 编写高覆盖例子
