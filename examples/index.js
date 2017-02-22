@@ -10,14 +10,16 @@ import TransformTest from './animations/TransformTest'
 
 const initExample = (canvasId, animationCreate, onDone) => {
   const canvas = document.getElementById(canvasId)
-  canvas.width = canvas.clientWidth
-  canvas.height = canvas.clientHeight
-  const context = canvas.getContext('2d')
-  const animation = animationCreate(context, canvas)
-  const myAnimator = new animator.Animator(animation)
-  myAnimator.play()
-  if (onDone) {
-    onDone(canvas, animation, myAnimator)
+  if (canvas) {
+    canvas.width = canvas.clientWidth
+    canvas.height = canvas.clientHeight
+    const context = canvas.getContext('2d')
+    const animation = animationCreate(context, canvas)
+    const myAnimator = new animator.Animator(animation)
+    myAnimator.play()
+    if (onDone) {
+      onDone(canvas, animation, myAnimator)
+    }
   }
 }
 
@@ -35,8 +37,7 @@ const examples = [{
     canvas.onclick = event => {
       animation.x = event.offsetX
       animation.y = event.offsetY
-      animation.reset()
-      myAnimator.play()
+      myAnimator.replay()
     }
   }
 }, {
@@ -79,3 +80,8 @@ const examples = [{
 examples.forEach(({ canvasId, animationCreate, onDone }) => {
   initExample(canvasId, animationCreate, onDone)
 })
+
+// standalone
+if (document.getElementById('js-canvas-use-ease')) {
+  require('./standalone/useEase')
+}

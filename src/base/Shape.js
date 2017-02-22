@@ -55,28 +55,33 @@ export default class Shape {
     this.progress = 0
   }
 
-  addAnim ({ duration, init, update }) {
+  addAnim ({ duration, init, update, complete }) {
     if (this.anims.length <= 0) {
       this.period = duration
       this.anims.push({
         end: this.period,
         init,
-        update
+        update,
+        complete
       })
     } else {
       this.period = this.anims[this.anims.length - 1].end + duration
       this.anims.push({
         end: this.period,
         init,
-        update
+        update,
+        complete
       })
     }
     return this
   }
 
-  addTween ({ duration, target, ease, update }) {
+  addTween ({ duration, target, ease, update, complete }) {
     const origin = {}
     ease = ease || _ease.quadInOut
+    if (typeof ease === 'string') {
+      ease = _ease[ease]
+    }
     return this.addAnim({
       duration,
       init: () => {
@@ -92,7 +97,8 @@ export default class Shape {
         if (update) {
           update(progress, easedProgress, elapsed)
         }
-      }
+      },
+      complete
     })
   }
 
@@ -112,6 +118,7 @@ export default class Shape {
         }
       }
 
+      // Anims
       for (let i = 0; i < this.anims.length; i++) {
         const begin = i <= 0 ? 0 : this.anims[i - 1].end
         const end = this.anims[i].end
@@ -121,8 +128,12 @@ export default class Shape {
           if (this.lastAnimIndex !== i) {
             if (this.lastAnimIndex >= 0) {
               const lastUpdate = this.anims[this.lastAnimIndex].update
+              const lastComplete = this.anims[this.lastAnimIndex].complete
               if (lastUpdate) {
                 lastUpdate(1, 0)
+              }
+              if (lastComplete) {
+                lastComplete()
               }
             }
             if (initCallback) {

@@ -1,5 +1,6 @@
 body {
   background: #363636;
+  min-height: 100vh;
 }
 canvas {
   width: 100%;
