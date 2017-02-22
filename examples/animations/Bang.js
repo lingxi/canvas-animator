@@ -32,7 +32,8 @@ export default class Bang extends ShapeContainer {
     for (let i = 0; i < countStar; i++) {
       const r = 2 + Math.random() * rRange
       const R = r + Math.random() * RRange
-      const star = new Star(this.context, 0, 0, R, r, 5, starStrokeStyle, starFillStyle, lineWidth)
+      const star = new Star(this.context, 0, 0, R, r, 5, starFillStyle, starStrokeStyle)
+      star.lineWidth = lineWidth
       star.dir = i / countStar * Math.PI * 2
       star.len = this.len * Math.random()
       star.rotationVel = (Math.random() - 0.5) * 2 * Math.PI * 3

@@ -9,7 +9,7 @@ export default class TweenTest extends ShapeContainer {
 
     const R = 75
     const r = 25
-    const color = '#000'
+    const color = '#ffff7f'
     this.star = new Star(this.context, -this.len / 2, 0, R, r, 5, color)
     this.add(this.star)
 

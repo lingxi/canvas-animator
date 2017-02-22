@@ -5,6 +5,10 @@ export default class Shape {
     this.context = context
     this.x = x
     this.y = y
+    this.velX = 0
+    this.velY = 0
+    this.accX = 0
+    this.accY = 0
 
     this.rotation = 0
     this.rotationVel = 0
@@ -14,7 +18,7 @@ export default class Shape {
     this.alpha = 1
     this.compositeOperation = 'source-over'
 
-    this.lineWidth = 1.0
+    this.lineWidth = 0 // 1.0
     this.lineCap = 'butt'
     this.lineJoin = 'miter'
     this.miterLimit = 10
@@ -134,7 +138,23 @@ export default class Shape {
         }
       }
 
-      this.rotation += this.rotationVel * elapsed
+      if (this.rotationVel) {
+        this.rotation += this.rotationVel * elapsed
+      }
+
+      if (this.velX) {
+        this.x += this.velX * elapsed
+      }
+      if (this.velY) {
+        this.y += this.velY * elapsed
+      }
+
+      if (this.accX) {
+        this.velX += this.accX * elapsed
+      }
+      if (this.accY) {
+        this.velY += this.accY * elapsed
+      }
 
       this.total += elapsed
     }
