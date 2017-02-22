@@ -16,29 +16,30 @@ npm i canvas-animator --save
 ```javascript
 import animator from 'canvas-animator'
 
-class MyAnimation extends animator.base.ShapeContainer {
-  constructor (context = null, x = 0, y = 0) {
-    super(context, x, y)
-
-    // 在 (0, 0) 位置创建一个 最大半径为75 最小半径为25 5个角 颜色为#ffff7f 的星
-    const star = new animator.shapes.Star(context, 0, 0, 75, 25, 5, '#ffff7f')
-
-    // 把创建的星添加到 MyAnimation 中
-    this.add(star)
-  }
-}
-
 // 获取 canvas 元素
 const canvas = document.getElementById('js-canvas')
 
 // 获取 CanvasRenderingContext2D
 const context = canvas.getContext('2d')
 
-// 创建动画实例
-const myAnimation = new MyAnimation(context, canvas.width / 2, canvas.height / 2)
+// 在 canvas的中央 创建一个 最大半径为75 最小半径为25 5个角 颜色为#ff7f00 的星
+const star = new animator.shapes.Star(
+  context,
+  canvas.width / 2, canvas.height / 2,
+  75, 25, 5,
+  '#ff7f00', 0
+)
 
 // 创建动画播放器并播放
-const myAnimator = new animator.Animator(myAnimation)
+const myAnimator = new animator.Animator(star)
 myAnimator.play()
 
 ```
+
+## 更多
+
+[基本图形](docs/base.md)
+[创建自己的图形](docs/extends-shape.md)
+[组合图形](docs/use-container.md)
+[创建缓动动画](docs/use-ease.md)
+WIP:缓动函数列表
