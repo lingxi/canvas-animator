@@ -14,7 +14,7 @@ export default class Circle extends Shape {
     if (this.fillStyle) {
       this.context.fill()
     }
-    if (this.lineWidth) {
+    if (this.lineWidth && this.strokeStyle) {
       this.context.stroke()
     }
   }

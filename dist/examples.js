@@ -1858,7 +1858,7 @@ var Rect = function (_Shape) {
       if (this.fillStyle) {
         this.context.fill();
       }
-      if (this.lineWidth) {
+      if (this.lineWidth && this.strokeStyle) {
         this.context.stroke();
       }
     }
@@ -1930,7 +1930,7 @@ var Star = function (_Shape) {
       if (this.fillStyle) {
         this.context.fill();
       }
-      if (this.lineWidth) {
+      if (this.lineWidth && this.strokeStyle) {
         this.context.stroke();
       }
     }
@@ -2081,7 +2081,7 @@ var Circle = function (_Shape) {
       if (this.fillStyle) {
         this.context.fill();
       }
-      if (this.lineWidth) {
+      if (this.lineWidth && this.strokeStyle) {
         this.context.stroke();
       }
     }
