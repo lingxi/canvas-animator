@@ -24,7 +24,7 @@ export default class Shape {
     this.miterLimit = 10
     this.lineDashOffset = 0.0
     this.font = '10px sans-serif'
-    this.textAlign = 'start'
+    this.textAlign = 'center' // 'start'
     this.textBaseline = 'alphabetic'
     this.direction = 'inherit'
     this.fillStyle = '#000'

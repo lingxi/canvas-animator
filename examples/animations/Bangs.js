@@ -4,11 +4,12 @@ import ShapeContainer from '../../src/base/ShapeContainer'
 export default class Bangs extends ShapeContainer {
   constructor (context = null) {
     super(context)
-    setInterval(() => {
+    const createBang = () => {
       const x = context.canvas.width * Math.random()
       const y = context.canvas.height * Math.random()
       const bang = new Bang(context, x, y)
       this.add(bang)
-    }, 50)
+    }
+    setInterval(createBang, 50)
   }
 }

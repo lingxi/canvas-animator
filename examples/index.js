@@ -10,9 +10,8 @@ import TransformTest from './animations/TransformTest'
 
 const initExample = (canvasId, animationCreate, onDone) => {
   const canvas = document.getElementById(canvasId)
-  canvas.width = document.body.clientWidth
+  canvas.width = canvas.clientWidth
   canvas.height = canvas.clientHeight
-  canvas.style.background = '#333'
   const context = canvas.getContext('2d')
   const animation = animationCreate(context, canvas)
   const myAnimator = new animator.Animator(animation)
@@ -25,12 +24,17 @@ const initExample = (canvasId, animationCreate, onDone) => {
 const examples = [{
   canvasId: 'js-canvas-bang',
   animationCreate (context, canvas) {
-    return new Bang(context, canvas.width / 2, canvas.height / 2)
+    const bang = new Bang(context, canvas.width / 2, canvas.height / 2)
+    const clickMe = new animator.shapes.Text(context, 0, 0, 'Click me!')
+    clickMe.font = '32px sans-serif'
+    clickMe.fillStyle = '#fff'
+    bang.add(clickMe)
+    return bang
   },
   onDone (canvas, animation, myAnimator) {
     canvas.onclick = event => {
-      animation.x = event.clientX
-      animation.y = event.clientY
+      animation.x = event.offsetX
+      animation.y = event.offsetY
       animation.reset()
       myAnimator.play()
     }

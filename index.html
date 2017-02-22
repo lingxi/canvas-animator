@@ -6,33 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!--<link rel="stylesheet" href="/static/build/css/common/common.css" />-->
+    <link rel="stylesheet" href="docs/css/bulma.min.css" />
+    <link rel="stylesheet" href="docs/css/index.css" />
   </head>
-
   <body>
-    <style>
-      html, body{
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        user-select: none;
-      }
-      canvas{
-        width: 100%;
-        height: 400px;
-        display: block;
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        border: 2px solid #7f7f7f
-      }
-    </style>
-
-    <!--<script src="http://jsconsole.com/js/remote.js?27d40821-836a-4d8a-8f28-85be71a0f298"></script>-->
-
-    <img id="test-img" src="http://www.lingxi360.com/Application/Home/View/lx/styles/css/images/logo.png" style="display: none">
-
+    <section class="hero is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-1">
+            Canvas Animator
+          </h1>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <div class="container">
+          <div class="tabs is-boxed is-medium">
+            <ul>
+              <li class="is-active"><a>Demos</a></li>
+              <li><a>...</a></li>
+              <li><a>...</a></li>
+              <li><a>...</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+    <img id="test-img" src="https://s.lingxi360.com/lingxi/asset/canvas-animator/1/logo.png" style="display: none">
     <canvas id="js-canvas-bang"></canvas>
     <canvas id="js-canvas-bangs"></canvas>
     <canvas id="js-canvas-circles"></canvas>
@@ -41,13 +41,7 @@
     <canvas id="js-canvas-tween-test"></canvas>
     <canvas id="js-canvas-display-test"></canvas>
     <canvas id="js-canvas-transform-test"></canvas>
-
-    <!--<script src="lib/preloadjs-NEXT.min.js"></script>
-    <script src="lib/easeljs-NEXT.min.js"></script>
-    <script src="lib/tweenjs-NEXT.min.js"></script>
-    <script src="lib/polyfill.min.js"></script>-->
-
     <script src="dist/examples.js"></script>
-
+    </div>
   </body>
 </html>

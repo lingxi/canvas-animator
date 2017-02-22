@@ -7,6 +7,7 @@ import Pattern from './shapes/Pattern'
 import Rect from './shapes/Rect'
 import Ring from './shapes/Ring'
 import Star from './shapes/Star'
+import Text from './shapes/Text'
 
 import ease from './utils/ease'
 import * as filters from './utils/filters'
@@ -24,7 +25,8 @@ const animator = {
     Pattern,
     Rect,
     Ring,
-    Star
+    Star,
+    Text
   },
   utils: {
     ease,
