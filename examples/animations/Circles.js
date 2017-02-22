@@ -39,6 +39,7 @@ export default class Circles extends ShapeContainer {
       const x = R * Math.cos(rad)
       const y = R * Math.sin(rad)
       const circle = new WavedCircle(this.context, x, y, r, color)
+      circle.lineWidth = 0
       circle.deltaTime = i / colors.length * circle.period
       this.add(circle)
     })

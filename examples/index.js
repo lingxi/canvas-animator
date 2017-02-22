@@ -2,11 +2,11 @@ import animator from '../src/index.js'
 import Bang from './animations/Bang'
 import Bangs from './animations/Bangs'
 import Circles from './animations/Circles'
-import Cube from './animations/Cube'
 import ImageTest from './animations/ImageTest'
 import Squares from './animations/Squares'
 import TweenTest from './animations/TweenTest'
 import DisplayTest from './animations/DisplayTest'
+import TransformTest from './animations/TransformTest'
 
 const initExample = (canvasId, animationCreate, onDone) => {
   const canvas = document.getElementById(canvasId)
@@ -64,6 +64,11 @@ const examples = [{
   canvasId: 'js-canvas-display-test',
   animationCreate (context, canvas) {
     return new DisplayTest(context, canvas.width / 2, canvas.height / 2)
+  }
+}, {
+  canvasId: 'js-canvas-transform-test',
+  animationCreate (context, canvas) {
+    return new TransformTest(context, canvas.width / 2, canvas.height / 2)
   }
 }]
 

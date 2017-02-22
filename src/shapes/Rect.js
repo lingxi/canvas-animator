@@ -12,7 +12,9 @@ export default class Rect extends Shape {
   _draw () {
     this.context.beginPath()
     this.context.rect(-this.width / 2, -this.height / 2, this.width, this.height)
-    this.context.fill()
+    if (this.fillStyle) {
+      this.context.fill()
+    }
     if (this.lineWidth) {
       this.context.stroke()
     }

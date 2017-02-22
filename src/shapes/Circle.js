@@ -11,7 +11,9 @@ export default class Circle extends Shape {
   _draw () {
     this.context.beginPath()
     this.context.arc(0, 0, this.r, 0, 2 * Math.PI)
-    this.context.fill()
+    if (this.fillStyle) {
+      this.context.fill()
+    }
     if (this.lineWidth) {
       this.context.stroke()
     }

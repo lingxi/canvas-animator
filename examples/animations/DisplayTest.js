@@ -11,8 +11,11 @@ export default class DisplayTest extends ShapeContainer {
 
     const container = new ShapeContainer(context, r, 0)
     const rect = new Rect(context, r, 0, 10, 10, '#ff7f7f')
+    rect.lineWidth = 0
     const rectFather = new Rect(context, 0, 0, 10, 10, '#7fff7f')
+    rectFather.lineWidth = 0
     const rectGrandFather = new Rect(context, 0, 0, 10, 10, '#7f7fff')
+    rectGrandFather.lineWidth = 0
 
     container.add(rect)
     container.add(rectFather)

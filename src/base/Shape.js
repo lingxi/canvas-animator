@@ -18,7 +18,7 @@ export default class Shape {
     this.alpha = 1
     this.compositeOperation = 'source-over'
 
-    this.lineWidth = 0 // 1.0
+    this.lineWidth = 1.0
     this.lineCap = 'butt'
     this.lineJoin = 'miter'
     this.miterLimit = 10
