@@ -38,8 +38,8 @@ myAnimator.play()
 
 ## 更多
 
-[基本图形](docs/base.md)
-[创建自己的图形](docs/extends-shape.md)
-[组合图形](docs/use-container.md)
-[创建缓动动画](docs/use-ease.md)
-WIP:缓动函数列表
+[基本图形](docs/base.md)  
+[创建自己的图形](docs/extends-shape.md)  
+[组合图形](docs/use-container.md)  
+[创建缓动动画](docs/use-ease.md)  
+WIP:缓动函数列表  
