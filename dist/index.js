@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 319);
+/******/ 	return __webpack_require__(__webpack_require__.s = 320);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -211,7 +211,7 @@ ShapeContainer.rotate = (x, y, z, rotationX, rotationY, rotationZ) => {
 
 /***/ }),
 
-/***/ 319:
+/***/ 320:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(69);
@@ -370,57 +370,7 @@ ease.expoInOut = function (t) {
 
 /***/ }),
 
-/***/ 48:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Circle = function (_Shape) {
-  _inherits(Circle, _Shape);
-
-  function Circle() {
-    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var r = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
-    var fillStyle = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '#000';
-
-    _classCallCheck(this, Circle);
-
-    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y));
-
-    _this.r = r;
-    _this.fillStyle = fillStyle;
-    return _this;
-  }
-
-  _createClass(Circle, [{
-    key: '_draw',
-    value: function _draw() {
-      this.context.beginPath();
-      this.context.arc(0, 0, this.r, 0, 2 * Math.PI);
-      this.context.fill();
-    }
-  }]);
-
-  return Circle;
-}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = Circle;
-
-/***/ }),
-
-/***/ 49:
+/***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -445,6 +395,7 @@ var Rect = function (_Shape) {
     var width = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
     var height = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 100;
     var fillStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
+    var strokeStyle = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
 
     _classCallCheck(this, Rect);
 
@@ -453,13 +404,21 @@ var Rect = function (_Shape) {
     _this.width = width;
     _this.height = height;
     _this.fillStyle = fillStyle;
+    _this.strokeStyle = strokeStyle;
     return _this;
   }
 
   _createClass(Rect, [{
     key: '_draw',
     value: function _draw() {
-      this.context.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+      this.context.beginPath();
+      this.context.rect(-this.width / 2, -this.height / 2, this.width, this.height);
+      if (this.fillStyle) {
+        this.context.fill();
+      }
+      if (this.lineWidth) {
+        this.context.stroke();
+      }
     }
   }]);
 
@@ -470,7 +429,7 @@ var Rect = function (_Shape) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -495,9 +454,8 @@ var Star = function (_Shape) {
     var R = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
     var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 50;
     var angleNum = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 5;
-    var strokeStyle = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
-    var fillStyle = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : '#fff';
-    var lineWidth = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 2;
+    var fillStyle = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '#000';
+    var strokeStyle = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : '#000';
 
     _classCallCheck(this, Star);
 
@@ -508,7 +466,6 @@ var Star = function (_Shape) {
     _this.angleNum = angleNum;
     _this.strokeStyle = strokeStyle;
     _this.fillStyle = fillStyle;
-    _this.lineWidth = lineWidth;
     return _this;
   }
 
@@ -529,8 +486,12 @@ var Star = function (_Shape) {
         this.context.lineTo(Math.cos(a) * R, Math.sin(a) * R);
       }
       this.context.closePath();
-      this.context.fill();
-      this.context.stroke();
+      if (this.fillStyle) {
+        this.context.fill();
+      }
+      if (this.lineWidth) {
+        this.context.stroke();
+      }
     }
   }]);
 
@@ -538,6 +499,63 @@ var Star = function (_Shape) {
 }(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = Star;
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Circle = function (_Shape) {
+  _inherits(Circle, _Shape);
+
+  function Circle() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var r = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+    var fillStyle = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '#000';
+    var strokeStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
+
+    _classCallCheck(this, Circle);
+
+    var _this = _possibleConstructorReturn(this, (Circle.__proto__ || Object.getPrototypeOf(Circle)).call(this, context, x, y));
+
+    _this.r = r;
+    _this.fillStyle = fillStyle;
+    _this.strokeStyle = strokeStyle;
+    return _this;
+  }
+
+  _createClass(Circle, [{
+    key: '_draw',
+    value: function _draw() {
+      this.context.beginPath();
+      this.context.arc(0, 0, this.r, 0, 2 * Math.PI);
+      if (this.fillStyle) {
+        this.context.fill();
+      }
+      if (this.lineWidth) {
+        this.context.stroke();
+      }
+    }
+  }]);
+
+  return Circle;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Circle;
 
 /***/ }),
 
@@ -673,7 +691,7 @@ var Ring = function (_Shape) {
     var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
     var R = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
     var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 50;
-    var fillStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#fff';
+    var fillStyle = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '#000';
 
     _classCallCheck(this, Ring);
 
@@ -750,14 +768,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_ease__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_filters__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Animator__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shapes_Text__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_ease__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_filters__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Animator__ = __webpack_require__(70);
+
 
 
 
@@ -784,13 +804,14 @@ var animator = {
     Pattern: __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__["a" /* default */],
     Rect: __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__["a" /* default */],
     Ring: __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__["a" /* default */],
-    Star: __WEBPACK_IMPORTED_MODULE_7__shapes_Star__["a" /* default */]
+    Star: __WEBPACK_IMPORTED_MODULE_7__shapes_Star__["a" /* default */],
+    Text: __WEBPACK_IMPORTED_MODULE_8__shapes_Text__["a" /* default */]
   },
   utils: {
-    ease: __WEBPACK_IMPORTED_MODULE_8__utils_ease__["a" /* default */],
-    filters: __WEBPACK_IMPORTED_MODULE_9__utils_filters__
+    ease: __WEBPACK_IMPORTED_MODULE_9__utils_ease__["a" /* default */],
+    filters: __WEBPACK_IMPORTED_MODULE_10__utils_filters__
   },
-  Animator: __WEBPACK_IMPORTED_MODULE_10__Animator__["a" /* default */]
+  Animator: __WEBPACK_IMPORTED_MODULE_11__Animator__["a" /* default */]
 };
 
 window.animator = animator;
@@ -889,6 +910,54 @@ Animator.DEFAULT_ELAPSED_MAX = Animator.DEFAULT_ELAPSED * 4; // 1 / 15
 
 /***/ }),
 
+/***/ 71:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var Text = function (_Shape) {
+  _inherits(Text, _Shape);
+
+  function Text() {
+    var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var text = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+    var maxWidth = arguments[4];
+
+    _classCallCheck(this, Text);
+
+    var _this = _possibleConstructorReturn(this, (Text.__proto__ || Object.getPrototypeOf(Text)).call(this, context, x, y));
+
+    _this.text = text;
+    _this.maxWidth = maxWidth;
+    return _this;
+  }
+
+  _createClass(Text, [{
+    key: '_draw',
+    value: function _draw() {
+      this.context.fillText(this.text, 0, 0, this.maxWidth);
+    }
+  }]);
+
+  return Text;
+}(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = Text;
+
+/***/ }),
+
 /***/ 8:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -911,6 +980,10 @@ var Shape = function () {
     this.context = context;
     this.x = x;
     this.y = y;
+    this.velX = 0;
+    this.velY = 0;
+    this.accX = 0;
+    this.accY = 0;
 
     this.rotation = 0;
     this.rotationVel = 0;
@@ -926,7 +999,7 @@ var Shape = function () {
     this.miterLimit = 10;
     this.lineDashOffset = 0.0;
     this.font = '10px sans-serif';
-    this.textAlign = 'start';
+    this.textAlign = 'center'; // 'start'
     this.textBaseline = 'alphabetic';
     this.direction = 'inherit';
     this.fillStyle = '#000';
@@ -1056,7 +1129,23 @@ var Shape = function () {
           }
         }
 
-        this.rotation += this.rotationVel * elapsed;
+        if (this.rotationVel) {
+          this.rotation += this.rotationVel * elapsed;
+        }
+
+        if (this.velX) {
+          this.x += this.velX * elapsed;
+        }
+        if (this.velY) {
+          this.y += this.velY * elapsed;
+        }
+
+        if (this.accX) {
+          this.velX += this.accX * elapsed;
+        }
+        if (this.accY) {
+          this.velY += this.accY * elapsed;
+        }
 
         this.total += elapsed;
       }
