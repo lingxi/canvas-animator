@@ -5,6 +5,8 @@ const context = canvas.getContext('2d')
 canvas.width = canvas.clientWidth
 canvas.height = canvas.clientHeight
 
+const NUM = 32
+
 const MIN_ACC_X = -50
 const MAX_ACC_X = 50
 const MIN_ACC_Y = -50
@@ -56,7 +58,7 @@ class FloatRect extends animator.shapes.Rect {
 
 const container = new animator.base.ShapeContainer(context, 0, 0)
 
-for (let i = 0; i < 64; i++) {
+for (let i = 0; i < NUM; i++) {
   const rect = new FloatRect(context)
   container.add(rect)
 }

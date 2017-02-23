@@ -1,4 +1,5 @@
-import animator from '../src/index.js'
+import animator from '../src/index'
+import ease from '../src/misc/ease'
 import Bang from './animations/Bang'
 import Bangs from './animations/Bangs'
 import Circles from './animations/Circles'
@@ -90,4 +91,24 @@ if (document.getElementById('js-canvas-background')) {
 }
 if (document.getElementById('js-canvas-use-container')) {
   require('./standalone/useContainer')
+}
+const easeTableTbody = document.getElementById('js-ease-table-tbody')
+if (easeTableTbody) {
+  for (const key in ease) {
+    const tr = document.createElement('tr')
+    // const tdName = document.createElement('td')
+    // const tdCurve = document.createElement('td')
+    // const tdAnim = document.createElement('td')
+    tr.innerHTML = `
+      <td>${key}</td>
+      <td>
+        <canvas class="ease__canvas-curve" id="js-ease-curve-${key}"></canvas>
+      </td>
+      <td>
+        <canvas class="ease__canvas-anim" id="js-ease-anim-${key}"></canvas>
+      </td>
+    `
+    easeTableTbody.appendChild(tr)
+  }
+  require('./standalone/ease')
 }

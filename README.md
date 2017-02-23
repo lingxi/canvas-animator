@@ -45,4 +45,4 @@ myAnimator.play()
 * [控制动画](docs/animator.md)
 * [组合图形](docs/use-container.md)  
 * [创建缓动动画](docs/use-ease.md)  
-* WIP:缓动函数列表  
+* [缓动函数列表](docs/ease.md)  

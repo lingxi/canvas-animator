@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 320);
+/******/ 	return __webpack_require__(__webpack_require__.s = 325);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -211,15 +211,7 @@ ShapeContainer.rotate = (x, y, z, rotationX, rotationY, rotationZ) => {
 
 /***/ }),
 
-/***/ 320:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(69);
-
-
-/***/ }),
-
-/***/ 33:
+/***/ 26:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -370,7 +362,72 @@ ease.expoInOut = function (t) {
 
 /***/ }),
 
-/***/ 43:
+/***/ 325:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(34);
+
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shapes_Text__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__misc_ease__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__misc_util__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Animator__ = __webpack_require__(70);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var animator = {
+  base: {
+    Shape: __WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */],
+    ShapeContainer: __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]
+  },
+  shapes: {
+    Bitmap: __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__["a" /* default */],
+    Circle: __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__["a" /* default */],
+    Pattern: __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__["a" /* default */],
+    Rect: __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__["a" /* default */],
+    Ring: __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__["a" /* default */],
+    Star: __WEBPACK_IMPORTED_MODULE_7__shapes_Star__["a" /* default */],
+    Text: __WEBPACK_IMPORTED_MODULE_8__shapes_Text__["a" /* default */]
+  },
+  ease: __WEBPACK_IMPORTED_MODULE_9__misc_ease__["a" /* default */],
+  util: __WEBPACK_IMPORTED_MODULE_10__misc_util__,
+  Animator: __WEBPACK_IMPORTED_MODULE_11__Animator__["a" /* default */]
+};
+
+window.animator = animator;
+/* harmony default export */ __webpack_exports__["default"] = animator;
+
+/***/ }),
+
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -429,7 +486,7 @@ var Rect = function (_Shape) {
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -502,7 +559,97 @@ var Star = function (_Shape) {
 
 /***/ }),
 
-/***/ 50:
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lerp", function() { return lerp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lerpNumber", function() { return lerpNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "randomNumber", function() { return randomNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hexToRgb", function() { return hexToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strToRgb", function() { return strToRgb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rgbToHex", function() { return rgbToHex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rgbToStr", function() { return rgbToStr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lerpColor", function() { return lerpColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "randomColor", function() { return randomColor; });
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var lerp = function lerp(min, max, ratio) {
+  if (typeof min === 'string' && typeof max === 'string' && min.indexOf('#') === 0 && max.indexOf('#') === 0) {
+    return lerpColor(min, max, ratio);
+  } else {
+    return lerpNumber(min, max, ratio);
+  }
+};
+
+var lerpNumber = function lerpNumber(min, max, ratio) {
+  return min + ratio * (max - min);
+};
+
+var randomNumber = function randomNumber(min, max) {
+  return lerpNumber(min, max, Math.random());
+};
+
+var hexToRgb = function hexToRgb(hex) {
+  var r = (hex & 0xff0000) >> 16;
+  var g = (hex & 0x00ff00) >> 8;
+  var b = hex & 0x0000ff;
+  return [r, g, b];
+};
+
+var strToRgb = function strToRgb(str) {
+  if (str.indexOf('#') === 0) {
+    str = str.substr(1);
+    return hexToRgb(parseInt(str, 16));
+  } else {
+    return [0, 0, 0];
+  }
+};
+
+var rgbToHex = function rgbToHex(_ref) {
+  var _ref2 = _slicedToArray(_ref, 3),
+      r = _ref2[0],
+      g = _ref2[1],
+      b = _ref2[2];
+
+  return (r & 0xff) << 16 | (g & 0xff) << 8 | b & 0xff;
+};
+
+var rgbToStr = function rgbToStr(_ref3) {
+  var _ref4 = _slicedToArray(_ref3, 3),
+      r = _ref4[0],
+      g = _ref4[1],
+      b = _ref4[2];
+
+  var hex = rgbToHex([r, g, b]);
+  var str = hex.toString(16);
+  var strLength = str.length;
+  if (str.length < 6) {
+    for (var i = 0; i < 6 - strLength; i++) {
+      str = '0' + str;
+    }
+  }
+  return '#' + str;
+};
+
+var lerpColor = function lerpColor(min, max, ratio) {
+  var colorMin = strToRgb(min);
+  var colorMax = strToRgb(max);
+  var rgb = [];
+  for (var i = 0; i < 3; i++) {
+    rgb[i] = lerpNumber(colorMin[i], colorMax[i], ratio);
+  }
+  return rgbToStr(rgb);
+};
+
+var randomColor = function randomColor(min, max) {
+  return lerpColor(min, max, Math.random());
+};
+
+/***/ }),
+
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -559,7 +706,7 @@ var Circle = function (_Shape) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -615,7 +762,7 @@ var Bitmap = function (_Shape) {
 
 /***/ }),
 
-/***/ 55:
+/***/ 57:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -667,7 +814,7 @@ var Pattern = function (_Shape) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -735,87 +882,6 @@ var Ring = function (_Shape) {
 }(__WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = Ring;
-
-/***/ }),
-
-/***/ 57:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sinInOut", function() { return sinInOut; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "back", function() { return back; });
-var sinInOut = function sinInOut(progress) {
-  var tweenedProgress = -(Math.cos(Math.PI * progress) - 1) / 2;
-  return tweenedProgress;
-};
-var back = function back(progress) {
-  if (progress < 0.5) {
-    progress /= 0.5;
-  } else {
-    progress = 1 - (progress - 0.5) / 0.5;
-  }
-  return progress;
-};
-
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base_Shape__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shapes_Star__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shapes_Text__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_ease__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_filters__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Animator__ = __webpack_require__(70);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var animator = {
-  base: {
-    Shape: __WEBPACK_IMPORTED_MODULE_0__base_Shape__["a" /* default */],
-    ShapeContainer: __WEBPACK_IMPORTED_MODULE_1__base_ShapeContainer__["a" /* default */]
-  },
-  shapes: {
-    Bitmap: __WEBPACK_IMPORTED_MODULE_2__shapes_Bitmap__["a" /* default */],
-    Circle: __WEBPACK_IMPORTED_MODULE_3__shapes_Circle__["a" /* default */],
-    Pattern: __WEBPACK_IMPORTED_MODULE_4__shapes_Pattern__["a" /* default */],
-    Rect: __WEBPACK_IMPORTED_MODULE_5__shapes_Rect__["a" /* default */],
-    Ring: __WEBPACK_IMPORTED_MODULE_6__shapes_Ring__["a" /* default */],
-    Star: __WEBPACK_IMPORTED_MODULE_7__shapes_Star__["a" /* default */],
-    Text: __WEBPACK_IMPORTED_MODULE_8__shapes_Text__["a" /* default */]
-  },
-  utils: {
-    ease: __WEBPACK_IMPORTED_MODULE_9__utils_ease__["a" /* default */],
-    filters: __WEBPACK_IMPORTED_MODULE_10__utils_filters__
-  },
-  Animator: __WEBPACK_IMPORTED_MODULE_11__Animator__["a" /* default */]
-};
-
-window.animator = animator;
-/* harmony default export */ __webpack_exports__["default"] = animator;
 
 /***/ }),
 
@@ -962,10 +1028,12 @@ var Text = function (_Shape) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_ease__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__misc_ease__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__misc_util__ = __webpack_require__(51);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 
@@ -988,7 +1056,7 @@ var Shape = function () {
     this.rotation = 0;
     this.rotationVel = 0;
 
-    this.scale = { x: 1, y: 1 };
+    this.scale = 1; // { x: 1, y: 1 }
 
     this.alpha = 1;
     this.compositeOperation = 'source-over';
@@ -1016,8 +1084,6 @@ var Shape = function () {
 
     this.loop = false;
     this.period = false;
-    this.anims = [];
-    this.lastAnimIndex = -1;
 
     this.autoRemoveWhenStopped = true;
 
@@ -1030,29 +1096,40 @@ var Shape = function () {
       this.stopped = false;
       this.total = 0;
       this.progress = 0;
+      this.animLists = [];
+      this.lastAnimIndexes = [];
     }
   }, {
     key: 'addAnim',
     value: function addAnim(_ref) {
       var duration = _ref.duration,
-          init = _ref.init,
-          update = _ref.update;
+          start = _ref.start,
+          update = _ref.update,
+          complete = _ref.complete,
+          index = _ref.index;
 
-      if (this.anims.length <= 0) {
-        this.period = duration;
-        this.anims.push({
-          end: this.period,
-          init: init,
-          update: update
-        });
-      } else {
-        this.period = this.anims[this.anims.length - 1].end + duration;
-        this.anims.push({
-          end: this.period,
-          init: init,
-          update: update
-        });
+      if (!index) {
+        index = 0;
       }
+      if (!this.animLists[index]) {
+        // init new queue
+        this.animLists[index] = [];
+        this.lastAnimIndexes[index] = -1;
+      }
+      var animList = this.animLists[index];
+      var end = void 0;
+      if (animList.length <= 0) {
+        end = duration;
+      } else {
+        end = animList[animList.length - 1].end + duration;
+      }
+      this.period = Math.max(this.period, end);
+      animList.push({
+        end: end,
+        start: start,
+        update: update,
+        complete: complete
+      });
       return this;
     }
   }, {
@@ -1063,27 +1140,48 @@ var Shape = function () {
       var duration = _ref2.duration,
           target = _ref2.target,
           ease = _ref2.ease,
-          _update = _ref2.update;
+          _start = _ref2.start,
+          _update = _ref2.update,
+          complete = _ref2.complete,
+          index = _ref2.index;
 
       var origin = {};
-      ease = ease || __WEBPACK_IMPORTED_MODULE_0__utils_ease__["a" /* default */].quadInOut;
+      ease = ease || __WEBPACK_IMPORTED_MODULE_0__misc_ease__["a" /* default */].quadInOut;
+      if (typeof ease === 'string') {
+        ease = __WEBPACK_IMPORTED_MODULE_0__misc_ease__["a" /* default */][ease];
+      }
       return this.addAnim({
         duration: duration,
-        init: function init() {
+        start: function start() {
           for (var field in target) {
             origin[field] = _this[field];
+          }
+          if (_start) {
+            _start();
           }
         },
         update: function update(progress, elapsed) {
           var easedProgress = ease(progress);
           for (var field in target) {
-            _this[field] = origin[field] + easedProgress * (target[field] - origin[field]);
+            _this[field] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__misc_util__["lerp"])(origin[field], target[field], easedProgress);
           }
           if (_update) {
             _update(progress, easedProgress, elapsed);
           }
-        }
+        },
+        complete: complete,
+        index: index
       });
+    }
+  }, {
+    key: 'addDelay',
+    value: function addDelay(_ref3) {
+      var duration = _ref3.duration,
+          start = _ref3.start,
+          complete = _ref3.complete,
+          index = _ref3.index;
+
+      this.addAnim({ duration: duration, start: start, complete: complete, index: index });
     }
   }, {
     key: 'update',
@@ -1103,29 +1201,38 @@ var Shape = function () {
           }
         }
 
-        for (var i = 0; i < this.anims.length; i++) {
-          var begin = i <= 0 ? 0 : this.anims[i - 1].end;
-          var end = this.anims[i].end;
-          var callback = this.anims[i].update;
-          var initCallback = this.anims[i].init;
-          if (this.total >= begin && this.total < end) {
-            if (this.lastAnimIndex !== i) {
-              if (this.lastAnimIndex >= 0) {
-                var lastUpdate = this.anims[this.lastAnimIndex].update;
-                if (lastUpdate) {
-                  lastUpdate(1, 0);
+        // Anims
+        for (var animIndex = 0; animIndex < this.animLists.length; animIndex++) {
+          var animList = this.animLists[animIndex];
+          var lastAnimIndex = this.lastAnimIndexes[animIndex];
+          for (var i = 0; i < animList.length; i++) {
+            var begin = i <= 0 ? 0 : animList[i - 1].end;
+            var end = animList[i].end;
+            var callback = animList[i].update;
+            var startCallback = animList[i].start;
+            if (this.total > begin && this.total <= end) {
+              if (lastAnimIndex !== i) {
+                if (lastAnimIndex >= 0) {
+                  var lastUpdate = animList[lastAnimIndex].update;
+                  var lastComplete = animList[lastAnimIndex].complete;
+                  if (lastUpdate) {
+                    lastUpdate(1, 0);
+                  }
+                  if (lastComplete) {
+                    lastComplete();
+                  }
                 }
+                if (startCallback) {
+                  startCallback();
+                }
+                this.lastAnimIndexes[animIndex] = i;
               }
-              if (initCallback) {
-                initCallback();
+              var animProgress = (this.total - begin) / (end - begin);
+              if (callback) {
+                callback(animProgress, elapsed);
               }
-              this.lastAnimIndex = i;
+              break;
             }
-            var animProgress = (this.total - begin) / (end - begin);
-            if (callback) {
-              callback(animProgress, elapsed);
-            }
-            break;
           }
         }
 
