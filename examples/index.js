@@ -88,3 +88,6 @@ if (document.getElementById('js-canvas-use-ease')) {
 if (document.getElementById('js-canvas-background')) {
   require('./standalone/background')
 }
+if (document.getElementById('js-canvas-use-container')) {
+  require('./standalone/useContainer')
+}
