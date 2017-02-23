@@ -96,9 +96,6 @@ const easeTableTbody = document.getElementById('js-ease-table-tbody')
 if (easeTableTbody) {
   for (const key in ease) {
     const tr = document.createElement('tr')
-    // const tdName = document.createElement('td')
-    // const tdCurve = document.createElement('td')
-    // const tdAnim = document.createElement('td')
     tr.innerHTML = `
       <td>${key}</td>
       <td>

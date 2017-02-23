@@ -4770,9 +4770,6 @@ var easeTableTbody = document.getElementById('js-ease-table-tbody');
 if (easeTableTbody) {
   for (var key in __WEBPACK_IMPORTED_MODULE_1__src_misc_ease__["a" /* default */]) {
     var tr = document.createElement('tr');
-    // const tdName = document.createElement('td')
-    // const tdCurve = document.createElement('td')
-    // const tdAnim = document.createElement('td')
     tr.innerHTML = '\n      <td>' + key + '</td>\n      <td>\n        <canvas class="ease__canvas-curve" id="js-ease-curve-' + key + '"></canvas>\n      </td>\n      <td>\n        <canvas class="ease__canvas-anim" id="js-ease-anim-' + key + '"></canvas>\n      </td>\n    ';
     easeTableTbody.appendChild(tr);
   }
