@@ -10,7 +10,7 @@ import Star from './shapes/Star'
 import Text from './shapes/Text'
 
 import ease from './utils/ease'
-import * as filters from './utils/filters'
+import * as math from './utils/math'
 
 import Animator from './Animator'
 
@@ -28,10 +28,8 @@ const animator = {
     Star,
     Text
   },
-  utils: {
-    ease,
-    filters
-  },
+  ease,
+  math,
   Animator
 }
 

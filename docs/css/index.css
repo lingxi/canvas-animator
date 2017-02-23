@@ -7,4 +7,12 @@ canvas {
   height: 400px;
   display: block;
   border: 2px solid #f5f5f5;
+  background: #363636;
+}
+.background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  background: transparent;
 }

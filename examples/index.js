@@ -85,3 +85,6 @@ examples.forEach(({ canvasId, animationCreate, onDone }) => {
 if (document.getElementById('js-canvas-use-ease')) {
   require('./standalone/useEase')
 }
+if (document.getElementById('js-canvas-background')) {
+  require('./standalone/background')
+}

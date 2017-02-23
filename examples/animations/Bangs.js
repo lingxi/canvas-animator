@@ -10,6 +10,6 @@ export default class Bangs extends ShapeContainer {
       const bang = new Bang(context, x, y)
       this.add(bang)
     }
-    setInterval(createBang, 50)
+    setInterval(createBang, 200)
   }
 }
