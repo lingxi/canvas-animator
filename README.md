@@ -1,5 +1,7 @@
 # Canvas Animator
 
+没有其他依赖的 canvas 动画库
+
 ## Demos
 [https://lingxiteam.github.io/canvas-animator/](https://lingxiteam.github.io/canvas-animator/)
 
