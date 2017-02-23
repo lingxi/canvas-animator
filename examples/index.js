@@ -92,6 +92,9 @@ if (document.getElementById('js-canvas-background')) {
 if (document.getElementById('js-canvas-use-container')) {
   require('./standalone/useContainer')
 }
+if (document.getElementById('js-canvas-use-container-as-shape')) {
+  require('./standalone/useContainerAsShape')
+}
 const easeTableTbody = document.getElementById('js-ease-table-tbody')
 if (easeTableTbody) {
   for (const key in ease) {
