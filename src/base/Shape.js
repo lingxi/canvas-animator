@@ -55,12 +55,12 @@ export default class Shape {
     this.progress = 0
   }
 
-  addAnim ({ duration, init, update, complete }) {
+  addAnim ({ duration, start, update, complete }) {
     if (this.anims.length <= 0) {
       this.period = duration
       this.anims.push({
         end: this.period,
-        init,
+        start,
         update,
         complete
       })
@@ -68,7 +68,7 @@ export default class Shape {
       this.period = this.anims[this.anims.length - 1].end + duration
       this.anims.push({
         end: this.period,
-        init,
+        start,
         update,
         complete
       })
@@ -76,7 +76,7 @@ export default class Shape {
     return this
   }
 
-  addTween ({ duration, target, ease, update, complete }) {
+  addTween ({ duration, target, ease, start, update, complete }) {
     const origin = {}
     ease = ease || _ease.quadInOut
     if (typeof ease === 'string') {
@@ -84,9 +84,12 @@ export default class Shape {
     }
     return this.addAnim({
       duration,
-      init: () => {
+      start: () => {
         for (const field in target) {
           origin[field] = this[field]
+        }
+        if (start) {
+          start()
         }
       },
       update: (progress, elapsed) => {
@@ -123,7 +126,7 @@ export default class Shape {
         const begin = i <= 0 ? 0 : this.anims[i - 1].end
         const end = this.anims[i].end
         const callback = this.anims[i].update
-        const initCallback = this.anims[i].init
+        const startCallback = this.anims[i].start
         if (this.total >= begin && this.total < end) {
           if (this.lastAnimIndex !== i) {
             if (this.lastAnimIndex >= 0) {
@@ -136,8 +139,8 @@ export default class Shape {
                 lastComplete()
               }
             }
-            if (initCallback) {
-              initCallback()
+            if (startCallback) {
+              startCallback()
             }
             this.lastAnimIndex = i
           }
