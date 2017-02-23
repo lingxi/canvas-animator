@@ -15,7 +15,7 @@ const star = new animator.shapes.Star(
   context,
   100, -100,
   40, 15, 5,
-  '#fff', 0
+  '#ffff3f', 0
 )
 
 // 0-1s 到达 (100, 100) 使用 sineInOut 缓动函数
@@ -62,6 +62,22 @@ star
     star.rotation = 0
   },
   ease: 'backOut'
+})
+.addTween({
+  duration: 2,
+  target: {
+    fillStyle: '#3fffff',
+    scale: 2
+  },
+  index: 1 // 设置另一组动画，两组动画将同时播放
+})
+.addTween({
+  duration: 2,
+  target: {
+    fillStyle: '#ffff3f',
+    scale: 1
+  },
+  index: 1
 })
 
 // 循环动画

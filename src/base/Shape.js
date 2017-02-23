@@ -1,4 +1,5 @@
-import _ease from '../utils/ease'
+import _ease from '../misc/ease'
+import { lerp } from '../misc/util'
 
 export default class Shape {
   constructor (context = null, x = 0, y = 0) {
@@ -13,7 +14,7 @@ export default class Shape {
     this.rotation = 0
     this.rotationVel = 0
 
-    this.scale = { x: 1, y: 1 }
+    this.scale = 1 // { x: 1, y: 1 }
 
     this.alpha = 1
     this.compositeOperation = 'source-over'
@@ -65,23 +66,19 @@ export default class Shape {
       this.lastAnimIndexes[index] = -1
     }
     const animList = this.animLists[index]
+    let end
     if (animList.length <= 0) {
-      this.period = duration
-      animList.push({
-        end: this.period,
-        start,
-        update,
-        complete
-      })
+      end = duration
     } else {
-      this.period = animList[animList.length - 1].end + duration
-      animList.push({
-        end: this.period,
-        start,
-        update,
-        complete
-      })
+      end = animList[animList.length - 1].end + duration
     }
+    this.period = Math.max(this.period, end)
+    animList.push({
+      end,
+      start,
+      update,
+      complete
+    })
     return this
   }
 
@@ -104,7 +101,7 @@ export default class Shape {
       update: (progress, elapsed) => {
         const easedProgress = ease(progress)
         for (const field in target) {
-          this[field] = origin[field] + easedProgress * (target[field] - origin[field])
+          this[field] = lerp(origin[field], target[field], easedProgress)
         }
         if (update) {
           update(progress, easedProgress, elapsed)

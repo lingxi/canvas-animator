@@ -1,5 +1,5 @@
 import Star from '../../src/shapes/Star'
-import ease from '../../src/utils/ease'
+import ease from '../../src/misc/ease'
 import ShapeContainer from '../../src/base/ShapeContainer'
 
 export default class TweenTest extends ShapeContainer {

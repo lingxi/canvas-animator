@@ -9,8 +9,8 @@ import Ring from './shapes/Ring'
 import Star from './shapes/Star'
 import Text from './shapes/Text'
 
-import ease from './utils/ease'
-import * as math from './utils/math'
+import ease from './misc/ease'
+import * as util from './misc/util'
 
 import Animator from './Animator'
 
@@ -29,7 +29,7 @@ const animator = {
     Text
   },
   ease,
-  math,
+  util,
   Animator
 }
 

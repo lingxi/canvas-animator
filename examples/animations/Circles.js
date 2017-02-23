@@ -1,5 +1,5 @@
 import Circle from '../../src/shapes/Circle'
-import { sinInOut, back } from '../../src/utils/filters'
+import { sinInOut, back } from '../../src/misc/filters'
 import ShapeContainer from '../../src/base/ShapeContainer'
 
 class WavedCircle extends Circle {

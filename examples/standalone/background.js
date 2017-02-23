@@ -17,7 +17,7 @@ const SIZE = 32
 const SIZE_SQRT_2 = SIZE * Math.SQRT2
 const ROTATION_VEL = Math.PI * 2
 
-const random = animator.math.random
+const random = animator.util.randomNumber
 
 class FloatRect extends animator.shapes.Rect {
   constructor (context) {

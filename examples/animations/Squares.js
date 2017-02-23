@@ -4,7 +4,7 @@ import ShapeContainer from '../../src/base/ShapeContainer'
 export default class Squares extends ShapeContainer {
   constructor (context = null, x = 0, y = 0) {
     super(context, x, y)
-    const size = 100
+    const size = 150
     const colors = [
       '#00b0df', '#fff',
       '#00e7c3', '#fff',
