@@ -5325,7 +5325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var CURVE_SIZE = 100;
 var CURVE_SAMPLE = 50;
 var CIRCLE_R = 40;
-var DURATION = 2;
+var DURATION = 3;
 
 for (var key in __WEBPACK_IMPORTED_MODULE_1__src_misc_ease__["a" /* default */]) {
   var curveId = 'js-ease-curve-' + key;

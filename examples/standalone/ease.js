@@ -4,7 +4,7 @@ import ease from '../../src/misc/ease'
 const CURVE_SIZE = 100
 const CURVE_SAMPLE = 50
 const CIRCLE_R = 40
-const DURATION = 2
+const DURATION = 3
 
 for (const key in ease) {
   const curveId = `js-ease-curve-${key}`
