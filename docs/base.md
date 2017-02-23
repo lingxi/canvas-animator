@@ -11,7 +11,6 @@
     * `x`: 水平坐标
     * `y`: 垂直坐标
     * `loop`: 动画是否循环，默认 `false`
-    * `period`: 动画周期，单位秒，默认 `false` 即无周期
     * `autoRemoveWhenStopped`: 是否在结束时自动移除，默认 `true`。仅在设置了 `period` 且 `loop` 为假时有效。
     * `rotation`: 旋转角度，以弧度记
     * `rotationVel`: 旋转速度，单位：弧度/秒

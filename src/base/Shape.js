@@ -41,8 +41,6 @@ export default class Shape {
 
     this.loop = false
     this.period = false
-    this.anims = []
-    this.lastAnimIndex = -1
 
     this.autoRemoveWhenStopped = true
 
@@ -53,20 +51,31 @@ export default class Shape {
     this.stopped = false
     this.total = 0
     this.progress = 0
+    this.animLists = []
+    this.lastAnimIndexes = []
   }
 
-  addAnim ({ duration, start, update, complete }) {
-    if (this.anims.length <= 0) {
+  addAnim ({ duration, start, update, complete, index }) {
+    if (!index) {
+      index = 0
+    }
+    if (!this.animLists[index]) {
+      // init new queue
+      this.animLists[index] = []
+      this.lastAnimIndexes[index] = -1
+    }
+    const animList = this.animLists[index]
+    if (animList.length <= 0) {
       this.period = duration
-      this.anims.push({
+      animList.push({
         end: this.period,
         start,
         update,
         complete
       })
     } else {
-      this.period = this.anims[this.anims.length - 1].end + duration
-      this.anims.push({
+      this.period = animList[animList.length - 1].end + duration
+      animList.push({
         end: this.period,
         start,
         update,
@@ -76,7 +85,7 @@ export default class Shape {
     return this
   }
 
-  addTween ({ duration, target, ease, start, update, complete }) {
+  addTween ({ duration, target, ease, start, update, complete, index }) {
     const origin = {}
     ease = ease || _ease.quadInOut
     if (typeof ease === 'string') {
@@ -101,8 +110,13 @@ export default class Shape {
           update(progress, easedProgress, elapsed)
         }
       },
-      complete
+      complete,
+      index
     })
+  }
+
+  addDelay ({ duration, start, complete, index }) {
+    this.addAnim({ duration, start, complete, index })
   }
 
   update (elapsed) {
@@ -122,33 +136,37 @@ export default class Shape {
       }
 
       // Anims
-      for (let i = 0; i < this.anims.length; i++) {
-        const begin = i <= 0 ? 0 : this.anims[i - 1].end
-        const end = this.anims[i].end
-        const callback = this.anims[i].update
-        const startCallback = this.anims[i].start
-        if (this.total >= begin && this.total < end) {
-          if (this.lastAnimIndex !== i) {
-            if (this.lastAnimIndex >= 0) {
-              const lastUpdate = this.anims[this.lastAnimIndex].update
-              const lastComplete = this.anims[this.lastAnimIndex].complete
-              if (lastUpdate) {
-                lastUpdate(1, 0)
+      for (let animIndex = 0; animIndex < this.animLists.length; animIndex++) {
+        const animList = this.animLists[animIndex]
+        const lastAnimIndex = this.lastAnimIndexes[animIndex]
+        for (let i = 0; i < animList.length; i++) {
+          const begin = i <= 0 ? 0 : animList[i - 1].end
+          const end = animList[i].end
+          const callback = animList[i].update
+          const startCallback = animList[i].start
+          if (this.total > begin && this.total <= end) {
+            if (lastAnimIndex !== i) {
+              if (lastAnimIndex >= 0) {
+                const lastUpdate = animList[lastAnimIndex].update
+                const lastComplete = animList[lastAnimIndex].complete
+                if (lastUpdate) {
+                  lastUpdate(1, 0)
+                }
+                if (lastComplete) {
+                  lastComplete()
+                }
               }
-              if (lastComplete) {
-                lastComplete()
+              if (startCallback) {
+                startCallback()
               }
+              this.lastAnimIndexes[animIndex] = i
             }
-            if (startCallback) {
-              startCallback()
+            const animProgress = (this.total - begin) / (end - begin)
+            if (callback) {
+              callback(animProgress, elapsed)
             }
-            this.lastAnimIndex = i
+            break
           }
-          const animProgress = (this.total - begin) / (end - begin)
-          if (callback) {
-            callback(animProgress, elapsed)
-          }
-          break
         }
       }
 
