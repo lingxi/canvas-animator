@@ -22,6 +22,9 @@ const star = new animator.shapes.Star(
 // 1-2s 到达 (-100, 100) 使用 circOut 缓动函数
 // 2-3s 到达 (-100, -100) 使用 elasticOut 缓动函数
 // 3-4s 到达 (100, -100) 使用 backOut 缓动函数
+// 于此同时
+// 0-2s 颜色逐渐变为 #3fffff，缩放到2倍，使用默认缓动函数
+// 2s-4s 颜色逐渐变为 #ffff3f，缩放到1倍，使用默认缓动函数
 star
 .addTween({
   duration: 1,
@@ -61,7 +64,7 @@ star
     // 重置角度为 0 使其始终绕一个方向旋转
     star.rotation = 0
   },
-  ease: 'backOut'
+  ease: 'bounceOut'
 })
 .addTween({
   duration: 2,
