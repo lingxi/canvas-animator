@@ -27,9 +27,6 @@ export default class Animator {
       if (this.shape.context) {
         this.shape.context.clearRect(0, 0, this.shape.context.canvas.width, this.shape.context.canvas.height)
       }
-      this.shape.worldX = this.shape.x
-      this.shape.worldY = this.shape.y
-      this.shape.worldZ = this.shape.z
       if (elapsed >= 0) {
         this.shape.update(Math.min(elapsed, Animator.DEFAULT_ELAPSED_MAX))
         this.shape.draw()
