@@ -414,7 +414,6 @@ var animator = {
   Animator: __WEBPACK_IMPORTED_MODULE_11__Animator__["a" /* default */]
 };
 
-window.animator = animator;
 /* harmony default export */ __webpack_exports__["default"] = animator;
 
 /***/ }),

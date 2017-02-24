@@ -33,5 +33,4 @@ const animator = {
   Animator
 }
 
-window.animator = animator
 export default animator
