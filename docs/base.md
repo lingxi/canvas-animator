@@ -44,7 +44,7 @@
     * `strokeStyle`: 描边颜色和样式，可以为表示 CSS 色彩的字符串、CanvasGradient 或 CanvasPattern
     * `lineWidth`: 描边宽，默认 `1.0`。为 0 时不描边
 
-## animator.shape.Pattern
+## animator.shapes.Pattern
 
 * 图案
 * 构造函数与属性：`constructor (context = null, x = 0, y = 0, width = 100, height = 100, image, repeat = 'repeat')`
@@ -55,7 +55,7 @@
     * `image`: 同 Bitmap
     * `repeat`: `'repeat'` | `'repeat-x'` | `'repeat-y'` | `'no-repeat'`
 
-## animator.shape.Rect
+## animator.shapes.Rect
 
 * 矩形
 * 构造函数与属性：`constructor (context = null, x = 0, y = 0, width = 100, height = 100, fillStyle = '#000', strokeStyle = '#000')`
@@ -70,7 +70,7 @@
     * `lineJoin`: 定义两线相交拐点的类型。允许的值：`'round'`, `'bevel'`, `'miter'` (默认)。见 [globalCompositeOperation](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
     * `miterLimit`: 斜接面限制比例。默认 10。见 [miterLimit](https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/miterLimit)
 
-## animator.shape.Ring
+## animator.shapes.Ring
 
 * 环形
 * 构造函数与属性：`constructor (context = null, x = 0, y = 0, R = 100, r = 50, fillStyle = '#000')`
@@ -80,7 +80,7 @@
     * `r`: 内圈半径
     * `fillStyle`: 同 Circle
 
-## animator.shape.Star
+## animator.shapes.Star
 
 * 星
 * 构造函数与属性：`constructor (context = null, x = 0, y = 0, R = 100, r = 50, angleNum = 5, fillStyle = '#000', strokeStyle = '#000')`
@@ -96,7 +96,22 @@
     * `lineJoin`: 同 Rect
     * `miterLimit`: 同 Rect
 
-## animator.shape.Text
+## animator.shapes.Polygon
+
+* 正多边形
+* 构造函数与属性：`constructor (context = null, x = 0, y = 0, r = 100, angleNum = 5, fillStyle = '#000', strokeStyle = '#000')`
+    * `context`: 同 Shape
+    * `x`, `y`: 同 Shape
+    * `r`: 半径（中心到顶点的距离）
+    * `angleNum`: 角数，默认 5 即 正五边形。
+    * `fillStyle`: 同 Circle
+    * `strokeStyle`: 同 Circle
+    * `lineWidth`: 同 Circle
+    * `lineCap`: 同 Rect
+    * `lineJoin`: 同 Rect
+    * `miterLimit`: 同 Rect
+
+## animator.shapes.Text
 
 * 文本
 * 构造函数与属性：`context = null, x = 0, y = 0, text = '', maxWidth`

@@ -60,3 +60,42 @@ export const lerpColor = (min, max, ratio) => {
 export const randomColor = (min, max) => {
   return lerpColor(min, max, Math.random())
 }
+
+export const hslToRgb = ([h, s, l]) => {
+  const q = (l < 1 / 2) ? l * (1 + s) : l + s - (l * s)
+  const p = 2 * l - q
+
+  const hk = (h % 360) / 360
+
+  const tr = hk + 1 / 3
+  const tg = hk
+  const tb = hk - 1 / 3
+
+  const tc = [tr, tg, tb]
+  for (let n = 0; n < tc.length; n++) {
+    let t = tc[n]
+    if (t < 0) t += 1
+    if (t > 1) t -= 1
+    if (t < 1 / 6) {
+      tc[n] = p + ((q - p) * 6 * t)
+    } else if (t < 1 / 2) {
+      tc[n] = q
+    } else if (t < 2 / 3) {
+      tc[n] = p + ((q - p) * 6 * (2 / 3 - t))
+    } else {
+      tc[n] = p
+    }
+  }
+  for (let n = 0; n < tc.length; n++) {
+    tc[n] = Math.round(tc[n] * 255)
+  }
+  return tc
+}
+
+export const hslToHex = ([h, s, l]) => {
+  return rgbToHex(hslToRgb([h, s, l]))
+}
+
+export const hslToStr = ([h, s, l]) => {
+  return rgbToStr(hslToRgb([h, s, l]))
+}

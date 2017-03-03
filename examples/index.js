@@ -4,6 +4,7 @@ import Bang from './animations/Bang'
 import Bangs from './animations/Bangs'
 import Circles from './animations/Circles'
 import ImageTest from './animations/ImageTest'
+import Shapes from './animations/Shapes'
 import Squares from './animations/Squares'
 import TweenTest from './animations/TweenTest'
 import DisplayTest from './animations/DisplayTest'
@@ -75,6 +76,11 @@ const examples = [{
   canvasId: 'js-canvas-transform-test',
   animationCreate (context, canvas) {
     return new TransformTest(context, canvas.width / 2, canvas.height / 2)
+  }
+}, {
+  canvasId: 'js-canvas-shapes',
+  animationCreate (context, canvas) {
+    return new Shapes(context, canvas.width / 2, canvas.height / 2)
   }
 }]
 

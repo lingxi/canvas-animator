@@ -1,6 +1,7 @@
 # Canvas Animator
 
-没有其他依赖的 canvas 动画库
+没有其他依赖的 canvas 动画库  
+（兼容到 IE9）
 
 ## Demos
 [https://lingxiteam.github.io/canvas-animator/](https://lingxiteam.github.io/canvas-animator/)
