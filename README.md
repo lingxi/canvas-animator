@@ -39,6 +39,10 @@ myAnimator.play()
 
 ```
 
+### 快速开始
+
+[canvas-animator-starter](https://github.com/LingxiTeam/canvas-animator-starter)
+
 ## 更多
 
 * [基本图形](docs/base.md)  
