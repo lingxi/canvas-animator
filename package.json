@@ -1,6 +1,6 @@
 {
   "name": "canvas-animator",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Several simple classes for building canvas animation.",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:LingxiTeam/canvas-animator.git"
+    "url": "git@github.com:lingxi/canvas-animator.git"
   },
   "author": "Wu Yu",
   "license": "ISC",

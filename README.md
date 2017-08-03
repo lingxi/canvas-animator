@@ -41,7 +41,7 @@ myAnimator.play()
 
 ### 快速开始
 
-[canvas-animator-starter](https://github.com/LingxiTeam/canvas-animator-starter)
+[canvas-animator-starter](https://github.com/lingxi/canvas-animator-starter)
 
 ## 更多
 
