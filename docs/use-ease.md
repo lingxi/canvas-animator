@@ -4,7 +4,7 @@ Shape 类的 addTween 方法可以方便地创建缓动动画
 
 ## 示例
 
-运行效果：[https://lingxiteam.github.io/canvas-animator/docs/use-ease.html](https://lingxiteam.github.io/canvas-animator/docs/use-ease.html)
+运行效果：[https://lingxi.github.io/canvas-animator/docs/use-ease.html](https://lingxi.github.io/canvas-animator/docs/use-ease.html)
 
 ```javascript
 import animator from '../../src/index'

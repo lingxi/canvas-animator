@@ -5,7 +5,7 @@ ShapeContainer 继承于 Shape，也可以传递给 animator.Animator 的构造�
 
 ## 示例
 
-运行效果：[https://lingxiteam.github.io/canvas-animator/docs/use-container.html](https://lingxiteam.github.io/canvas-animator/docs/use-container.html)
+运行效果：[https://lingxi.github.io/canvas-animator/docs/use-container.html](https://lingxi.github.io/canvas-animator/docs/use-container.html)
 
 ### 坐标系
 

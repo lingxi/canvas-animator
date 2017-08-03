@@ -11,4 +11,4 @@ const easedProgress = animator.ease.quadInOut(progress)
 ```
 
 查看所有可用缓动函数：  
-[https://lingxiteam.github.io/canvas-animator/docs/ease.html](https://lingxiteam.github.io/canvas-animator/docs/ease.html)
+[https://lingxi.github.io/canvas-animator/docs/ease.html](https://lingxi.github.io/canvas-animator/docs/ease.html)

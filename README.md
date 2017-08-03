@@ -4,7 +4,7 @@
 （兼容到 IE9）
 
 ## Demos
-[https://lingxiteam.github.io/canvas-animator/](https://lingxiteam.github.io/canvas-animator/)
+[https://lingxi.github.io/canvas-animator/](https://lingxi.github.io/canvas-animator/)
 
 ## Get Started
 
